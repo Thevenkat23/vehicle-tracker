@@ -494,14 +494,19 @@
 
 <script>
   // Odometer: roll each drum to its digit, staggered right-to-left like a real counter.
-  (function(){
+ (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var odo = document.getElementById('odo');
     var reels = Array.prototype.slice.call(document.querySelectorAll('.reel'));
+    var done = false;
+
     function digitHeight(){
       var s = document.querySelector('.reel span');
       return s ? s.getBoundingClientRect().height : 56;
     }
-    function set(){
+    function roll(){
+      if (done) return;
+      done = true;
       var h = digitHeight();
       reels.forEach(function(r, i){
         var d = parseInt(r.getAttribute('data-d'), 10) || 0;
@@ -511,8 +516,24 @@
         }, delay);
       });
     }
-    if (reduce) { set(); } else { setTimeout(set, 260); }
+    function start(){
+      if (reduce) { roll(); return; }
+      if ('IntersectionObserver' in window && odo) {
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if (e.isIntersecting){ setTimeout(roll, 450); io.disconnect(); }
+          });
+        }, { threshold:.4 });
+        io.observe(odo);
+      } else {
+        setTimeout(roll, 600);
+      }
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); }
+    else { window.addEventListener('load', start); }
+
     window.addEventListener('resize', function(){
+      if (!done) return;
       var h = digitHeight();
       reels.forEach(function(r){
         var d = parseInt(r.getAttribute('data-d'), 10) || 0;
@@ -522,16 +543,6 @@
         r.style.transition = '';
       });
     });
-  })();
-
-  // Scroll reveals
-  (function(){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
-    document.querySelectorAll('.rise').forEach(function(el){ io.observe(el); });
   })();
 </script>
 
