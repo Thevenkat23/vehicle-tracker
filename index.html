@@ -493,8 +493,8 @@
 </footer>
 
 <script>
-  // Odometer: roll each drum to its digit, staggered right-to-left like a real counter.
- (function(){
+  // Odometer
+  (function(){
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var odo = document.getElementById('odo');
     var reels = Array.prototype.slice.call(document.querySelectorAll('.reel'));
@@ -543,6 +543,25 @@
         r.style.transition = '';
       });
     });
+  })();
+
+  // Scroll reveals — with a failsafe so content can never stay hidden
+  (function(){
+    var items = Array.prototype.slice.call(document.querySelectorAll('.rise'));
+    function showAll(){ items.forEach(function(el){ el.classList.add('in'); }); }
+
+    if (!('IntersectionObserver' in window)) { showAll(); return; }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+
+    items.forEach(function(el){ io.observe(el); });
+
+    // Safety net: if anything goes wrong, reveal everything after 3 seconds
+    setTimeout(showAll, 3000);
   })();
 </script>
 
