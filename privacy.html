@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Vehicle Tracker</title>
+<meta name="description" content="Privacy policy for the Vehicle Tracker app (Android, with iPhone coming soon). Your records stay on your device. No account, no server, no tracking.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0B1220">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1220;
+    --paper:#F4F6F8;
+    --paper-2:#E8ECF1;
+    --slate:#334155;
+    --slate-soft:#64748B;
+    --signal:#2563EB;
+    --mint:#22C55E;
+    --rule:rgba(255,255,255,.10);
+    --rule-dark:rgba(11,18,32,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--slate);
+    font-family:'Instrument Sans',system-ui,sans-serif;
+    font-size:17px;line-height:1.68;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 28px}
+
+  .nav{background:var(--ink);border-bottom:1px solid var(--rule)}
+  .nav-in{
+    max-width:1080px;margin:0 auto;padding:0 28px;
+    display:flex;align-items:center;justify-content:space-between;height:64px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:11px;
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:1.02rem;letter-spacing:-.01em;color:#fff;text-decoration:none;
+  }
+  .brand-mark{
+    width:30px;height:30px;
+    display:block;object-fit:contain;
+  }
+  .nav a.back{color:#94A3B8;text-decoration:none;font-size:.9rem;font-weight:500}
+  .nav a.back:hover{color:#fff}
+
+  header.doc{padding:72px 0 40px;border-bottom:1px solid var(--rule-dark)}
+  .kicker{
+    font-family:'JetBrains Mono',monospace;font-size:.7rem;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--signal);
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:clamp(2.1rem,5.4vw,3rem);letter-spacing:-.03em;
+    line-height:1.06;color:#0B1220;margin-bottom:16px;
+  }
+  .meta{
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;
+    color:var(--slate-soft);
+  }
+
+  .summary{
+    background:var(--paper-2);border-radius:14px;padding:26px 28px;margin:36px 0 8px;
+    display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;
+  }
+  .summary-mark{
+    width:42px;height:42px;border-radius:11px;background:var(--mint);
+    display:grid;place-items:center;font-size:1.2rem;
+  }
+  .summary h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;
+    color:#0B1220;letter-spacing:-.02em;margin-bottom:8px;
+  }
+  .summary p{font-size:.98rem;color:var(--slate-soft)}
+
+  main{padding:8px 0 72px}
+  section{padding:34px 0;border-bottom:1px solid var(--rule-dark)}
+  section:last-of-type{border-bottom:0}
+  h2.s{
+    font-family:'Bricolage Grotesque',sans-serif;font-weight:800;
+    font-size:1.42rem;color:#0B1220;letter-spacing:-.025em;
+    margin-bottom:14px;display:flex;align-items:baseline;gap:12px;
+  }
+  h2.s em{
+    font-family:'JetBrains Mono',monospace;font-style:normal;
+    font-size:.72rem;color:var(--signal);letter-spacing:.1em;
+  }
+  h3{
+    font-size:1.02rem;font-weight:600;color:#0B1220;
+    margin:22px 0 8px;
+  }
+  p{margin-bottom:14px}
+  p:last-child{margin-bottom:0}
+  ul{margin:0 0 14px 0;padding-left:0;list-style:none}
+  li{
+    position:relative;padding-left:22px;margin-bottom:9px;
+  }
+  li::before{
+    content:"";position:absolute;left:4px;top:.62em;
+    width:6px;height:6px;border-radius:50%;background:var(--signal);
+  }
+  a{color:var(--signal)}
+  strong{color:#0B1220;font-weight:600}
+
+  .perm{border-top:1px solid var(--rule-dark);margin-top:8px}
+  .perm-row{
+    display:grid;grid-template-columns:150px 1fr;gap:22px;
+    padding:18px 0;border-bottom:1px solid var(--rule-dark);align-items:baseline;
+  }
+  .perm-k{
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--signal);
+  }
+  .perm-v{font-size:.98rem}
+
+  .contact{
+    background:#0B1220;color:#C7D2E0;border-radius:14px;
+    padding:30px 30px;margin-top:34px;
+  }
+  .contact h2{
+    font-family:'Bricolage Grotesque',sans-serif;font-size:1.3rem;
+    color:#fff;letter-spacing:-.02em;margin-bottom:10px;
+  }
+  .contact a{color:#60A5FA}
+
+  footer{background:var(--ink);color:#5D6B80;padding:34px 0;font-size:.86rem}
+  .f-in{
+    max-width:1080px;margin:0 auto;padding:0 28px;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  footer a{color:#A9B6C7;text-decoration:none}
+  footer a:hover{color:#fff}
+
+  a:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:4px}
+
+  @media (max-width:640px){
+    .perm-row{grid-template-columns:1fr;gap:6px}
+    .summary{grid-template-columns:1fr}
+    header.doc{padding:52px 0 32px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="brand"><img class="brand-mark" src="assets/icon-96.png" alt="Vehicle Tracker logo"> Vehicle Tracker</a>
+    <a href="index.html" class="back">← Back to site</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="doc">
+    <div class="kicker">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Vehicle Tracker for Android (iPhone coming soon) · Last updated 19 July 2026</p>
+  </header>
+
+  <div class="summary">
+    <div class="summary-mark">🔒</div>
+    <div>
+      <h2>The short version</h2>
+      <p>Vehicle Tracker does not collect your personal information. There is no account, no login and no server. Everything you enter stays on your phone, and nothing is sent to us or to anyone else.</p>
+    </div>
+  </div>
+
+  <main>
+    <section>
+      <h2 class="s"><em>01</em> Who this policy is from</h2>
+      <p>Vehicle Tracker ("the app") is a vehicle maintenance and running-cost app published by <strong>VK</strong> ("we", "us"), currently available on Android, with an iPhone version planned. This policy explains what the app does with information on your device. It applies to the app only.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>02</em> Information the app stores</h2>
+      <p>Everything below is stored <strong>locally on your device</strong>. None of it is transmitted to us, and we have no ability to see it.</p>
+      <ul>
+        <li><strong>Vehicle details</strong> — make, model, registration number, odometer reading, fuel type, tank or battery capacity, and any photo you choose to add.</li>
+        <li><strong>Fuel and charging records</strong> — litres or units, price, amount paid, odometer, date, fuel station and payment method if you enter them.</li>
+        <li><strong>Service and maintenance records</strong> — what was done, the cost, the date, and your maintenance task lists.</li>
+        <li><strong>Document details</strong> — registration, insurance and PUC numbers and expiry dates that you enter, so the app can remind you.</li>
+        <li><strong>Trips</strong> — start and end points, stops, distance, dates and trip expenses.</li>
+        <li><strong>Profile</strong> — the name, phone number, city and photo you optionally add to personalise the app.</li>
+      </ul>
+      <p>We do not use analytics, advertising, crash-reporting services or tracking of any kind. The app does not build a profile of you and does not know who you are.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>03</em> Permissions and why they're needed</h2>
+      <p>The app asks for a permission only at the moment it needs it, and you can decline. Declining limits that one feature, not the whole app.</p>
+      <div class="perm">
+        <div class="perm-row">
+          <div class="perm-k">Camera</div>
+          <div class="perm-v">To photograph a petrol, service or insurance bill so the app can read the figures from it, and to take a vehicle or profile photo. Photographs are processed on your device and are not uploaded.</div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-k">Photos &amp; media</div>
+          <div class="perm-v">To let you pick an existing bill image or vehicle photo from your gallery. The app reads only the images you select.</div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-k">Notifications</div>
+          <div class="perm-v">To remind you before an oil change, service, or document expiry. Reminders are generated on your device; nothing is sent through a server.</div>
+        </div>
+        <div class="perm-row">
+          <div class="perm-k">Storage</div>
+          <div class="perm-v">To save a backup file where you choose, and to read a backup file when you restore.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="s"><em>04</em> Reading your bills</h2>
+      <p>The bill-scanning feature uses <strong>Google ML Kit text recognition running entirely on your device</strong>. The image is analysed locally to pull out figures such as the amount, litres, rate and date. The photograph and the text read from it are not sent to us, to Google, or to any other service.</p>
+      <p>Scanning only ever fills in the form for you. Nothing is saved until you review the figures and tap save.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>05</em> Backups</h2>
+      <h3>Backups you make yourself</h3>
+      <p>You can export your records to a file at any time. Where that file goes — your Downloads folder, an email, a messaging app, a cloud drive — is entirely your choice, and it is then covered by the privacy policy of wherever you sent it.</p>
+      <h3>Android's automatic backup</h3>
+      <p>If you have Android's system backup switched on, Android may copy the app's data to <strong>your own Google Drive account</strong> so it can be restored when you reinstall or change phones. This is a feature of your device and your Google account, not of our servers — we cannot access it. You can turn it off in your device settings under Backup.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>06</em> Sharing</h2>
+      <p>We do not sell, rent or share your information, because we do not receive it. The only time your records leave your device is when <strong>you</strong> deliberately share them — for example, by sending a report or a backup file to someone.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>07</em> Keeping and deleting your data</h2>
+      <p>Your records stay on your device for as long as the app is installed. You are in control of all of it:</p>
+      <ul>
+        <li>Delete any single record, document, trip or vehicle from within the app.</li>
+        <li>Clear everything at once through Android's <strong>Settings → Apps → Vehicle Tracker → Storage → Clear data</strong>.</li>
+        <li>Uninstalling the app removes its data from your device. If you may want it later, export a backup first.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="s"><em>08</em> Children</h2>
+      <p>The app is intended for vehicle owners and is not directed at children under 13. It does not knowingly collect information from anyone, of any age.</p>
+    </section>
+
+    <section>
+      <h2 class="s"><em>09</em> Changes to this policy</h2>
+      <p>If the app changes in a way that affects this policy, we will update this page and change the date at the top. Significant changes will also be noted in the app's release notes on Google Play.</p>
+    </section>
+
+    <div class="contact">
+      <h2>Questions about your privacy?</h2>
+      <p>Write to <a href="mailto:vehiclemaintenancetracker@zohomail.in">vehiclemaintenancetracker@zohomail.in</a> and we'll respond as soon as we can.</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="f-in">
+    <span>© 2026 VK · Vehicle Tracker</span>
+    <span><a href="index.html">Back to site</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
