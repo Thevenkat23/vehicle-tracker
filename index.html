@@ -31,9 +31,8 @@
   <style>
     :root {
       --bg-dark: #0B1220;
-      --bg-card: rgba(18, 28, 48, 0.65);
+      --bg-card: rgba(18, 28, 48, 0.7);
       --border-glass: rgba(255, 255, 255, 0.12);
-      --border-glow: rgba(0, 242, 254, 0.4);
       --text-main: #F4F6F8;
       --text-muted: #94A3B8;
       
@@ -48,8 +47,7 @@
       --grad-btn: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
       --grad-text: linear-gradient(135deg, #00f2fe 0%, #00ff88 50%, #a855f7 100%);
       
-      --radius-xl: 24px;
-      --radius-lg: 16px;
+      --radius-xl: 20px;
       --font-heading: 'Bricolage Grotesque', sans-serif;
       --font-body: 'Instrument Sans', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -64,57 +62,7 @@
       line-height: 1.6;
     }
 
-    /* Engine Start Splash Screen */
-    .splash-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: #060a12;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-
-    .splash-content {
-      text-align: center;
-      padding: 2rem;
-      max-width: 500px;
-    }
-
-    .splash-icon {
-      font-size: 4rem;
-      color: var(--cyan);
-      margin-bottom: 1.5rem;
-      animation: pulseGauge 2s infinite alternate;
-    }
-
-    @keyframes pulseGauge {
-      0% { transform: scale(1); filter: drop-shadow(0 0 10px var(--cyan)); }
-      100% { transform: scale(1.15); filter: drop-shadow(0 0 35px var(--magenta)); }
-    }
-
-    .splash-title {
-      font-family: var(--font-heading);
-      font-size: 2.75rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-
-    .splash-title span {
-      background: var(--grad-text);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .splash-subtitle {
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-      font-size: 1.05rem;
-    }
-
-    /* Floating Moving Vehicles Layer */
+    /* Floating Vehicles Background Layer */
     .floating-vehicles-container {
       position: absolute;
       top: 0; left: 0;
@@ -126,7 +74,7 @@
 
     .floating-v-icon {
       position: absolute;
-      font-size: 2rem;
+      font-size: 2.2rem;
       opacity: 0.75;
       filter: drop-shadow(0 0 12px currentColor);
       animation-timing-function: ease-in-out;
@@ -134,16 +82,14 @@
       animation-direction: alternate;
     }
 
-    .v-car1 { color: var(--cyan); top: 18%; left: 8%; animation: floatPath1 8s infinite alternate; }
-    .v-bike1 { color: var(--magenta); top: 25%; right: 10%; animation: floatPath2 9s infinite alternate; }
-    .v-scooter1 { color: var(--green); top: 65%; left: 6%; animation: floatPath3 10s infinite alternate; }
-    .v-ev1 { color: var(--purple); top: 72%; right: 8%; animation: floatPath1 7s infinite alternate; }
-    .v-car2 { color: var(--orange); top: 45%; left: 2%; animation: floatPath2 11s infinite alternate; }
-    .v-bike2 { color: var(--cyan); top: 50%; right: 4%; animation: floatPath3 8s infinite alternate; }
+    .v-car1 { color: var(--cyan); top: 15%; left: 6%; animation: floatPath1 8s infinite alternate; }
+    .v-bike1 { color: var(--magenta); top: 22%; right: 8%; animation: floatPath2 9s infinite alternate; }
+    .v-scooter1 { color: var(--green); top: 62%; left: 5%; animation: floatPath3 10s infinite alternate; }
+    .v-ev1 { color: var(--purple); top: 70%; right: 6%; animation: floatPath1 7s infinite alternate; }
 
     @keyframes floatPath1 {
       0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-      50% { transform: translate(30px, -40px) rotate(8deg) scale(1.1); }
+      50% { transform: translate(30px, -35px) rotate(8deg) scale(1.1); }
       100% { transform: translate(-20px, 20px) rotate(-5deg) scale(0.95); }
     }
 
@@ -159,31 +105,14 @@
       100% { transform: translate(-30px, -30px) rotate(-8deg) scale(1.1); }
     }
 
-    /* Road Track Lane Grid */
-    .road-grid {
-      position: fixed;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 2px; height: 100%;
-      background: repeating-linear-gradient(to bottom, transparent, transparent 25px, rgba(0, 242, 254, 0.18) 25px, rgba(0, 242, 254, 0.18) 75px);
-      animation: animateRoad 1.2s linear infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes animateRoad {
-      0% { transform: translateX(-50%) translateY(0); }
-      100% { transform: translateX(-50%) translateY(100px); }
-    }
-
     /* Ambient Glow Orbs */
     .glow-orb {
       position: fixed;
       border-radius: 50%;
-      filter: blur(130px);
+      filter: blur(140px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.35;
+      opacity: 0.3;
     }
     .orb-1 { top: -10vw; left: -10vw; width: 45vw; height: 45vw; background: var(--cyan); }
     .orb-2 { bottom: -10vw; right: -10vw; width: 50vw; height: 50vw; background: var(--magenta); }
@@ -192,10 +121,9 @@
     .navbar {
       position: fixed; top: 0; left: 0; width: 100%;
       z-index: 1000; padding: 1.25rem 2rem;
-      background: rgba(11, 18, 32, 0.7);
+      background: rgba(11, 18, 32, 0.8);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border-glass);
-      transition: all 0.3s ease;
     }
     .nav-container {
       max-width: 1200px; margin: 0 auto;
@@ -213,7 +141,6 @@
     .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color 0.3s; }
     .nav-links a:hover { color: var(--cyan); }
 
-    /* Buttons */
     .btn-glow {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 0.85rem 1.8rem; background: var(--grad-btn);
@@ -227,13 +154,14 @@
       box-shadow: 0 0 30px var(--cyan);
     }
 
+    /* Container & Structure */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
+    
     /* Hero Section */
     .hero {
-      position: relative;
-      padding: 10rem 0 5rem;
+      padding: 9rem 0 4rem;
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 3rem; align-items: center;
-      z-index: 2;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -248,51 +176,126 @@
     .hero-title span { background: var(--grad-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-subtitle { color: var(--text-muted); font-size: 1.15rem; margin-bottom: 2rem; max-width: 500px; }
 
-    /* Vehicle Chips Bar */
-    .vehicle-chips { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 2.25rem; }
-    .v-chip {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 16px; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border-glass); border-radius: 30px;
-      font-size: 0.875rem; font-weight: 600; color: #fff;
-      transition: all 0.3s ease;
-    }
-    .v-chip.car i { color: var(--cyan); }
-    .v-chip.bike i { color: var(--magenta); }
-    .v-chip.scooter i { color: var(--green); }
-    .v-chip.ev i { color: var(--purple); }
-    .v-chip:hover { border-color: var(--cyan); transform: translateY(-3px); }
-
-    /* Phone Mockup Frame */
+    /* Phone Mockup */
     .hero-mockup-wrap { position: relative; display: flex; justify-content: center; align-items: center; }
     .hero-mockup-glow {
-      position: absolute; width: 340px; height: 340px;
-      background: var(--grad-glow); filter: blur(80px); opacity: 0.4;
-      border-radius: 50%; animation: pulseGauge 3s infinite alternate;
+      position: absolute; width: 320px; height: 320px;
+      background: var(--grad-glow); filter: blur(80px); opacity: 0.35; border-radius: 50%;
     }
     .hero-mockup-img {
-      width: 100%; max-width: 320px; border-radius: 32px;
+      width: 100%; max-width: 310px; border-radius: 32px;
       box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 30px rgba(0, 242, 254, 0.3);
       border: 3px solid var(--border-glass); position: relative; z-index: 2;
     }
 
-    /* Container & Grids */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2; }
-    .section-header { text-align: center; max-width: 650px; margin: 5rem auto 3rem; }
-    .section-subtitle { color: var(--cyan); font-family: var(--font-mono); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
-    .section-title { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 800; }
+    /* SECTION: Interactive Hover Cards Grid (Why Choose Us) */
+    .section-header { text-align: center; max-width: 700px; margin: 6rem auto 3.5rem; }
+    .section-subtitle { color: var(--cyan); font-family: var(--font-mono); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+    .section-title { font-family: var(--font-heading); font-size: 2.75rem; font-weight: 800; margin-top: 0.5rem; }
 
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 5rem; }
-    .feature-card {
-      background: var(--bg-card); border: 1px solid var(--border-glass);
-      backdrop-filter: blur(16px); padding: 2.25rem; border-radius: var(--radius-xl);
-      transition: all 0.3s ease;
+    .hover-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 6rem;
     }
-    .feature-card:hover { border-color: var(--cyan); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,242,254,0.15); }
-    .feature-icon {
-      width: 54px; height: 54px; border-radius: 14px;
-      background: rgba(0, 242, 254, 0.1); display: flex; align-items: center;
-      justify-content: center; font-size: 1.5rem; color: var(--cyan); margin-bottom: 1.25rem;
+
+    /* 3D Flip Card Container */
+    .flip-card {
+      perspective: 1000px;
+      height: 290px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      border-radius: var(--radius-xl);
+    }
+
+    /* Hover trigger flip */
+    .flip-card:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      border: 2px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Front State (Minimal clean outline style as in image_6939ca.png) */
+    .flip-card-front {
+      background: rgba(15, 23, 42, 0.85);
+      align-items: center;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .flip-card-front .front-icon {
+      font-size: 3rem;
+      color: var(--cyan);
+      margin-bottom: 1.25rem;
+      transition: transform 0.3s;
+    }
+    .flip-card-front h3 {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .flip-card-front .hover-hint {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Back State (Dark details state with bullet points as in image_6939c3.png) */
+    .flip-card-back {
+      background: #0f182a;
+      border-color: var(--cyan);
+      transform: rotateY(180deg);
+      box-shadow: 0 15px 35px rgba(0, 242, 254, 0.25);
+    }
+    
+    .card-detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .card-detail-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: #E2E8F0;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .card-detail-item i {
+      font-size: 1.1rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 242, 254, 0.12);
+      color: var(--cyan);
+      flex-shrink: 0;
     }
 
     /* Footer */
@@ -301,30 +304,16 @@
     .footer-bottom { border-top: 1px solid var(--border-glass); padding-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 850px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-subtitle, .vehicle-chips { justify-content: center; margin-left: auto; margin-right: auto; }
-      .features-grid { grid-template-columns: 1fr; }
+      .hover-card-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Welcome Engine Start Splash Overlay -->
-  <div class="splash-overlay" id="splashOverlay">
-    <div class="splash-content">
-      <div class="splash-icon"><i class="fa-solid fa-gauge-high"></i></div>
-      <h1 class="splash-title">Welcome to <span>Vehicle Tracker</span></h1>
-      <p class="splash-subtitle">Smart Garage & Maintenance Command Center</p>
-      <button class="btn-glow" id="startEngineBtn" style="padding: 1.1rem 2.5rem; font-size: 1.1rem; background: var(--grad-glow);">
-        <i class="fa-solid fa-power-off"></i> START ENGINE & ENTER
-      </button>
-    </div>
-  </div>
-
-  <!-- Dynamic Road Track and Orbs -->
-  <div class="road-grid"></div>
+  <!-- Ambient Glow Orbs -->
   <div class="glow-orb orb-1"></div>
   <div class="glow-orb orb-2"></div>
 
@@ -336,7 +325,7 @@
         <span>Vehicle Tracker</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
+        <li><a href="#advantages">Why Choose Us</a></li>
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="#" class="btn-glow" style="padding: 0.6rem 1.4rem;"><i class="fa-brands fa-google-play"></i> Get App</a></li>
       </ul>
@@ -351,24 +340,14 @@
       <i class="fa-solid fa-motorcycle floating-v-icon v-bike1"></i>
       <i class="fa-solid fa-moped floating-v-icon v-scooter1"></i>
       <i class="fa-solid fa-bolt-lightning floating-v-icon v-ev1"></i>
-      <i class="fa-solid fa-car floating-v-icon v-car2"></i>
-      <i class="fa-solid fa-motorcycle floating-v-icon v-bike2"></i>
     </div>
 
     <div class="hero-content">
-      <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> 100% On-Device Privacy</div>
+      <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Private On-Device Maintenance</div>
       <h1 class="hero-title">Track Services & <span>Drive Worry-Free</span></h1>
       <p class="hero-subtitle">
         Intelligent service reminders, real-time mileage tracking, fuel log analytics, and receipt scans for every vehicle in your driveway.
       </p>
-
-      <!-- Vehicle Chips -->
-      <div class="vehicle-chips">
-        <div class="v-chip car"><i class="fa-solid fa-car"></i> Cars</div>
-        <div class="v-chip bike"><i class="fa-solid fa-motorcycle"></i> Motorcycles</div>
-        <div class="v-chip scooter"><i class="fa-solid fa-moped"></i> Scooters</div>
-        <div class="v-chip ev"><i class="fa-solid fa-bolt-lightning"></i> Electric Vehicles</div>
-      </div>
 
       <div>
         <a href="#" class="btn-glow">
@@ -384,30 +363,89 @@
     </div>
   </header>
 
-  <!-- Features Grid -->
-  <section class="container" id="features">
+  <!-- SECTION: Interactive Hover Cards Grid (Why Choose Us) -->
+  <section class="container" id="advantages">
     <div class="section-header">
-      <span class="section-subtitle">Features Overview</span>
-      <h2 class="section-title">Engineered for All Motorized Transport</h2>
+      <span class="section-subtitle">Core Pillars</span>
+      <h2 class="section-title">WHY CHOOSE VEHICLE TRACKER</h2>
+      <p style="color: var(--text-muted); margin-top: 0.5rem;">Hover your mouse over any card to reveal details</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
-        <h3>Smart Reminders</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Timely distance & date alerts for oil changes, tire rotations, brake checks, and insurance renewals.</p>
+    <div class="hover-card-grid">
+      <!-- Card 1: Excellence in Privacy -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-user-shield front-icon"></i>
+            <h3>Excellence in Privacy</h3>
+            <span class="hover-hint">Hover for details →</span>
+          </div>
+          <div class="flip-card-back">
+            <ul class="card-detail-list">
+              <li class="card-detail-item"><i class="fa-solid fa-database"></i> 100% Local On-Device SQLite Database Storage</li>
+              <li class="card-detail-item"><i class="fa-solid fa-user-slash"></i> No Accounts, Logins, or User Profiles Needed</li>
+              <li class="card-detail-item"><i class="fa-solid fa-wifi"></i> Works Completely Offline with Zero Internet Needed</li>
+              <li class="card-detail-item"><i class="fa-solid fa-shield-halved"></i> Zero Third-Party Telemetry or Cloud Tracking</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon" style="color: var(--magenta); background: rgba(255,0,127,0.1);"><i class="fa-solid fa-gas-pump"></i></div>
-        <h3>Fuel & EV Logs</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Log petrol fill-ups or EV charge sessions to monitor running expenses and mileage accuracy.</p>
+      <!-- Card 2: Proven ML Bill Scanner -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-camera-retro front-icon" style="color: var(--magenta);"></i>
+            <h3>Smart OCR Bill Reader</h3>
+            <span class="hover-hint">Hover for details →</span>
+          </div>
+          <div class="flip-card-back" style="border-color: var(--magenta);">
+            <ul class="card-detail-list">
+              <li class="card-detail-item"><i class="fa-solid fa-brain" style="color: var(--magenta); background: rgba(255,0,127,0.12);"></i> On-Device Google ML Kit Text Recognition</li>
+              <li class="card-detail-item"><i class="fa-solid fa-receipt" style="color: var(--magenta); background: rgba(255,0,127,0.12);"></i> Instantly Extracts Fuel Litres, Total & Date</li>
+              <li class="card-detail-item"><i class="fa-solid fa-lock" style="color: var(--magenta); background: rgba(255,0,127,0.12);"></i> Photos Stay Safely Inside Your Gallery</li>
+              <li class="card-detail-item"><i class="fa-solid fa-pen-to-square" style="color: var(--magenta); background: rgba(255,0,127,0.12);"></i> Full Edit & Manual Verification Control</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon" style="color: var(--green); background: rgba(0,255,136,0.1);"><i class="fa-solid fa-camera"></i></div>
-        <h3>Bill & Receipt Reader</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Google ML Kit scans service receipts directly on your phone with zero server uploads.</p>
+      <!-- Card 3: Diversified Fleet Support -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-car-tunnel front-icon" style="color: var(--green);"></i>
+            <h3>Diversified Fleet Garage</h3>
+            <span class="hover-hint">Hover for details →</span>
+          </div>
+          <div class="flip-card-back" style="border-color: var(--green);">
+            <ul class="card-detail-list">
+              <li class="card-detail-item"><i class="fa-solid fa-car" style="color: var(--green); background: rgba(0,255,136,0.12);"></i> Support for Cars, SUVs & Commercial Fleets</li>
+              <li class="card-detail-item"><i class="fa-solid fa-motorcycle" style="color: var(--green); background: rgba(0,255,136,0.12);"></i> Specialized Tracking for Motorcycles & Scooters</li>
+              <li class="card-detail-item"><i class="fa-solid fa-bolt" style="color: var(--green); background: rgba(0,255,136,0.12);"></i> Electric Vehicle (EV) Charge & Battery Logs</li>
+              <li class="card-detail-item"><i class="fa-solid fa-folder-open" style="color: var(--green); background: rgba(0,255,136,0.12);"></i> PUC, Insurance & Registration Expiry Alerts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Precision Analytics -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-chart-line front-icon" style="color: var(--purple);"></i>
+            <h3>Precision Analytics</h3>
+            <span class="hover-hint">Hover for details →</span>
+          </div>
+          <div class="flip-card-back" style="border-color: var(--purple);">
+            <ul class="card-detail-list">
+              <li class="card-detail-item"><i class="fa-solid fa-chart-pie" style="color: var(--purple); background: rgba(168,85,247,0.12);"></i> Real-Time Fuel Economy & Mileage Calculations</li>
+              <li class="card-detail-item"><i class="fa-solid fa-wallet" style="color: var(--purple); background: rgba(168,85,247,0.12);"></i> Cost Per Kilometer / Mile Expense Trends</li>
+              <li class="card-detail-item"><i class="fa-solid fa-file-export" style="color: var(--purple); background: rgba(168,85,247,0.12);"></i> One-Click Local CSV & Encrypted File Backups</li>
+              <li class="card-detail-item"><i class="fa-solid fa-clock-rotate-left" style="color: var(--purple); background: rgba(168,85,247,0.12);"></i> Lifetime Service History & Maintenance Logbook</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -428,29 +466,21 @@
 
         <div>
           <h4 style="margin-bottom: 1rem; font-family: var(--font-heading);">Navigation</h4>
-          <p><a href="#features" style="color: var(--text-muted); text-decoration: none;">Features</a></p>
+          <p><a href="#advantages" style="color: var(--text-muted); text-decoration: none;">Why Choose Us</a></p>
           <p><a href="privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a></p>
         </div>
 
         <div>
           <h4 style="margin-bottom: 1rem; font-family: var(--font-heading);">Support</h4>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Contact: <a href="mailto:vehiclemaintenancetracker@zohomail.in" style="color: var(--cyan);">vehiclemaintenancetracker@zohomail.in</a></p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Contact: <a href="mailto:vehiclemaintenancetracker@zohomail.in" style="color: var(--cyan);">vehiclemaintenancetracker@zohomail.in</a>[cite: 2]</p>
         </div>
       </div>
 
       <div class="footer-bottom">
-        © 2026 VK · Vehicle Tracker · Designed & Engineered by Venkatesh K
+        © 2026 VK · Vehicle Tracker · Designed & Engineered by Venkatesh K[cite: 2]
       </div>
     </div>
   </footer>
 
-  <script>
-    // Splash Screen Start Button
-    document.getElementById('startEngineBtn').addEventListener('click', () => {
-      const splash = document.getElementById('splashOverlay');
-      splash.style.opacity = '0';
-      splash.style.visibility = 'hidden';
-    });
-  </script>
 </body>
 </html>
