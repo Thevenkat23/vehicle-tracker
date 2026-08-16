@@ -6,7 +6,7 @@
   <title>VehiMinder - Smart Vehicle Maintenance & Expense Tracker</title>
   
   <!-- SEO & Open Graph Meta Tags -->
-  <meta name="description" content="Track vehicle service history, mileage, fuel logs, and maintenance schedules effortless with VehiMinder. Smart reminders and detailed cost analytics.">
+  <meta name="description" content="Track vehicle service history, mileage, fuel logs, and maintenance schedules effortlessly for cars, motorcycles, scooters, and EVs with VehiMinder.">
   <link rel="canonical" href="https://thevenkat23.github.io/vehicle-tracker/">
   <meta property="og:title" content="VehiMinder - Vehicle Maintenance & Expense Tracker">
   <meta property="og:description" content="Never miss an oil change or service date again. Track mileage, fuel logs, and upkeep costs.">
@@ -25,7 +25,7 @@
   <!-- Google Fonts & Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- JSON-LD Structured Data -->
@@ -47,20 +47,21 @@
 
   <style>
     /* ==========================================================================
-       Vibrant Cyber-Modern Theme CSS
+       Motorized Cyber-Garage Theme CSS
        ========================================================================== */
     :root {
-      --bg-dark: #070a12;
-      --bg-card: rgba(18, 24, 43, 0.65);
+      --bg-dark: #050811;
+      --bg-card: rgba(15, 22, 41, 0.7);
       --border-glass: rgba(255, 255, 255, 0.12);
-      --border-glow: rgba(0, 242, 254, 0.3);
+      --border-glow: rgba(0, 242, 254, 0.35);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --cyan: #00f2fe;
       --electric-blue: #4facfe;
       --violet: #7f00ff;
-      --neon-pink: #ff007f;
+      --engine-orange: #ff5e00;
       --grad-glow: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7f00ff 100%);
+      --grad-engine: linear-gradient(135deg, #ff5e00 0%, #ff0055 100%);
       --grad-text: linear-gradient(135deg, #00f2fe 0%, #00d2ff 40%, #9d4edd 100%);
       --radius-xl: 24px;
       --radius-lg: 16px;
@@ -83,6 +84,89 @@
       line-height: 1.6;
     }
 
+    /* Welcome / Splash Screen Overlay */
+    .splash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #04060d;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .splash-content {
+      text-align: center;
+      padding: 2rem;
+      max-width: 500px;
+    }
+
+    .splash-icon {
+      font-size: 4rem;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+      animation: pulseGauge 2s infinite alternate;
+    }
+
+    @keyframes pulseGauge {
+      0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0,242,254,0.4)); }
+      100% { transform: scale(1.1); filter: drop-shadow(0 0 30px rgba(0,242,254,0.9)); }
+    }
+
+    .splash-title {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .splash-title span {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .splash-subtitle {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .btn-engine-start {
+      background: var(--grad-engine) !important;
+      padding: 1.1rem 2.5rem !important;
+      font-size: 1.1rem !important;
+      letter-spacing: 1px;
+      box-shadow: 0 0 30px rgba(255, 94, 0, 0.5) !important;
+    }
+
+    .btn-engine-start:hover {
+      box-shadow: 0 0 50px rgba(255, 94, 0, 0.8) !important;
+    }
+
+    /* Animated Road Lanes Background */
+    .road-lines-bg {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: repeating-linear-gradient(to bottom, transparent, transparent 30px, rgba(0, 242, 254, 0.15) 30px, rgba(0, 242, 254, 0.15) 80px);
+      animation: moveRoad 1.5s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes moveRoad {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(110px); }
+    }
+
     /* Ambient Glowing Background Orbs */
     .bg-orb {
       position: fixed;
@@ -90,7 +174,7 @@
       filter: blur(120px);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.45;
+      opacity: 0.4;
       animation: floatGlow 12s ease-in-out infinite alternate;
     }
 
@@ -125,7 +209,7 @@
       z-index: 1000;
       padding: 1.25rem 2rem;
       transition: all 0.3s ease;
-      background: rgba(7, 10, 18, 0.4);
+      background: rgba(5, 8, 17, 0.4);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -133,9 +217,9 @@
 
     .navbar.scrolled {
       padding: 0.85rem 2rem;
-      background: rgba(7, 10, 18, 0.85);
+      background: rgba(5, 8, 17, 0.9);
       border-bottom: 1px solid var(--border-glass);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .nav-container {
@@ -188,7 +272,7 @@
       color: var(--cyan);
     }
 
-    /* Shimmer Button */
+    /* Buttons */
     .btn-glow {
       position: relative;
       display: inline-flex;
@@ -227,7 +311,6 @@
       box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
     }
 
-    /* Mobile Nav Toggle */
     .mobile-toggle {
       display: none;
       font-size: 1.5rem;
@@ -235,7 +318,6 @@
       cursor: pointer;
     }
 
-    /* Container Standard */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -246,7 +328,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 11rem 0 6rem;
+      padding: 11rem 0 5rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
@@ -284,8 +366,40 @@
     .hero-subtitle {
       font-size: 1.15rem;
       color: var(--text-muted);
-      margin-bottom: 2.25rem;
+      margin-bottom: 2rem;
       max-width: 520px;
+    }
+
+    /* Vehicle Categories Bar */
+    .vehicle-categories {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 2.25rem;
+    }
+
+    .v-category-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-glass);
+      border-radius: 30px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: all 0.3s ease;
+    }
+
+    .v-category-chip i {
+      color: var(--cyan);
+    }
+
+    .v-category-chip:hover {
+      background: rgba(0, 242, 254, 0.12);
+      border-color: var(--cyan);
+      transform: translateY(-2px);
     }
 
     .hero-actions {
@@ -329,7 +443,7 @@
       50% { transform: translateY(-18px) rotate(1deg); }
     }
 
-    /* Counter / Stats Bar */
+    /* Stats Section */
     .stats-section {
       padding: 3rem 0;
       margin-bottom: 5rem;
@@ -385,7 +499,7 @@
       line-height: 1.2;
     }
 
-    /* Features Grid (Glassmorphism & 3D Tilt) */
+    /* Features Grid */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -454,7 +568,7 @@
       line-height: 1.6;
     }
 
-    /* App Screenshots Carousel / Grid */
+    /* Screenshots Grid */
     .screenshots-section {
       padding: 4rem 0 7rem;
     }
@@ -581,7 +695,7 @@
     /* Footer */
     footer {
       border-top: 1px solid var(--border-glass);
-      padding: 4rem 0 2rem;
+      padding: 4rem 0 2.5rem;
       background: rgba(5, 7, 13, 0.95);
     }
 
@@ -625,14 +739,35 @@
       color: var(--cyan);
     }
 
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    /* Custom Developer Attribution Footer */
+    .footer-bottom-custom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       padding-top: 2rem;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      gap: 0.5rem;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-bottom-custom .meta-line {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .footer-bottom-custom .heart-icon {
+      color: #ff4757;
+      display: inline-block;
+      margin: 0 2px;
+    }
+
+    .footer-bottom-custom .credit-details {
+      font-size: 0.825rem;
+      color: #64748b;
+      margin-top: 0.25rem;
     }
 
     /* Mobile Responsive Rules */
@@ -642,8 +777,10 @@
         text-align: center;
         padding-top: 9rem;
       }
-      .hero-subtitle {
-        margin: 0 auto 2rem;
+      .hero-subtitle, .vehicle-categories {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
       }
       .hero-actions {
         justify-content: center;
@@ -690,15 +827,27 @@
       .footer-grid {
         grid-template-columns: 1fr;
       }
-      .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Opening Welcome / Engine Start Overlay -->
+  <div class="splash-overlay" id="splashOverlay">
+    <div class="splash-content">
+      <div class="splash-icon">
+        <i class="fa-solid fa-gauge-high"></i>
+      </div>
+      <h1 class="splash-title">Welcome to <span>VehiMinder</span></h1>
+      <p class="splash-subtitle">Your Smart Garage & Maintenance Command Center</p>
+      <button class="btn-glow btn-engine-start" id="startEngineBtn">
+        <i class="fa-solid fa-power-off"></i> START ENGINE & ENTER
+      </button>
+    </div>
+  </div>
+
+  <!-- Animated Highway Center Lanes -->
+  <div class="road-lines-bg"></div>
 
   <!-- Background Ambient Mesh Glow -->
   <div class="bg-orb bg-orb-1"></div>
@@ -728,18 +877,27 @@
   <header class="container hero">
     <div class="hero-content">
       <div class="hero-badge">
-        <i class="fa-solid fa-bolt"></i> Ultimate Vehicle Companion
+        <i class="fa-solid fa-road"></i> Complete Garage Management
       </div>
       <h1 class="hero-title">Track Maintenance & <span>Drive Worry-Free</span></h1>
       <p class="hero-subtitle">
-        Intelligent service reminders, real-time mileage tracking, fuel log analytics, and digital receipt scans all organized in one sleek garage app.
+        Intelligent service reminders, real-time mileage tracking, fuel log analytics, and digital receipt scans tailored for every vehicle in your driveway.
       </p>
+
+      <!-- Supported Vehicle Types Chips -->
+      <div class="vehicle-categories">
+        <div class="v-category-chip"><i class="fa-solid fa-car"></i> Cars</div>
+        <div class="v-category-chip"><i class="fa-solid fa-motorcycle"></i> Motorcycles</div>
+        <div class="v-category-chip"><i class="fa-solid fa-moped"></i> Scooters</div>
+        <div class="v-category-chip"><i class="fa-solid fa-bolt-lightning"></i> Electric Vehicles</div>
+      </div>
+
       <div class="hero-actions">
         <a href="#" class="btn-glow">
           <i class="fa-brands fa-google-play fa-lg"></i> Get on Google Play
         </a>
         <a href="#features" class="btn-glow" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); box-shadow: none;">
-          Explore Features
+          Explore Garage
         </a>
       </div>
     </div>
@@ -771,45 +929,45 @@
   <!-- Features Grid -->
   <section class="container" id="features">
     <div class="section-header">
-      <span class="section-subtitle">Powerful Capabilities</span>
-      <h2 class="section-title">Everything Your Garage Needs in One Place</h2>
+      <span class="section-subtitle">High-Octane Features</span>
+      <h2 class="section-title">Engineered for All Motorized Vehicles</h2>
     </div>
 
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
-        <h3 class="feature-title">Smart Reminders</h3>
-        <p class="feature-desc">Never forget oil changes, tire rotations, brake checks, or insurance renewals with automated mileage & date alerts.</p>
+        <h3 class="feature-title">Smart Service Reminders</h3>
+        <p class="feature-desc">Never miss oil changes, chain lubrication, tire rotations, brake checks, or battery updates with distance & date alerts.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-gas-pump"></i></div>
-        <h3 class="feature-title">Fuel & Expense Analytics</h3>
-        <p class="feature-desc">Log fuel fill-ups to calculate real-world MPG/KMPL, track spending trends, and optimize overall running costs.</p>
+        <h3 class="feature-title">Fuel & EV Charging Logs</h3>
+        <p class="feature-desc">Log petrol fill-ups or EV charge sessions to track real-world MPG/KMPL, battery range, and overall running costs.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-camera"></i></div>
         <h3 class="feature-title">Receipt Digitalization</h3>
-        <p class="feature-desc">Attach photos of repair bills, parts receipts, and inspection reports directly to specific vehicle records.</p>
+        <p class="feature-desc">Snap and attach photos of mechanic bills, parts invoices, and official inspection documents directly to your garage records.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-warehouse"></i></div>
         <h3 class="feature-title">Multi-Vehicle Garage</h3>
-        <p class="feature-desc">Manage cars, motorcycles, trucks, and SUVs simultaneously with customized maintenance rules per vehicle.</p>
+        <p class="feature-desc">Seamlessly toggle between your commuter car, weekend superbike, family scooter, or daily electric vehicle.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-        <h3 class="feature-title">Detailed Reports</h3>
-        <p class="feature-desc">Export formatted vehicle service histories for potential buyers to boost your resale value effortlessly.</p>
+        <h3 class="feature-title">Detailed Service History</h3>
+        <p class="feature-desc">Generate formatted vehicle service histories for potential buyers to maximize your resale value effortlessly.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h3 class="feature-title">Offline & Secure</h3>
-        <p class="feature-desc">Your garage data is saved locally on your device with high-speed performance and complete privacy.</p>
+        <h3 class="feature-title">Offline & Local Security</h3>
+        <p class="feature-desc">Your garage records stay strictly on your phone with zero mandatory cloud tracking or privacy invasion.</p>
       </div>
     </div>
   </section>
@@ -818,7 +976,7 @@
   <section class="container screenshots-section" id="screenshots">
     <div class="section-header">
       <span class="section-subtitle">Visual Interface</span>
-      <h2 class="section-title">Designed for Speed & Clarity</h2>
+      <h2 class="section-title">Designed for Speed & Driving Clarity</h2>
     </div>
 
     <div class="screenshots-grid">
@@ -854,23 +1012,23 @@
           <i class="fa-solid fa-chevron-down faq-icon"></i>
         </div>
         <div class="faq-body">
-          Yes! VehiMinder provides robust core tracking features including fuel logging, service records, and reminders completely free.
+          Yes! VehiMinder provides robust core tracking features including fuel/charge logging, service records, and reminders completely free.
         </div>
       </div>
 
       <div class="faq-card">
         <div class="faq-header">
-          Can I manage multiple vehicles?
+          Does it support cars, bikes, scooters, and electric vehicles?
           <i class="fa-solid fa-chevron-down faq-icon"></i>
         </div>
         <div class="faq-body">
-          Absolutely. You can add cars, motorcycles, scooters, and utility vehicles under a single account and toggle between them instantly.
+          Yes! VehiMinder supports all motorized transport categories including cars, motorcycles, scooters, electric vehicles (EVs), and light trucks.
         </div>
       </div>
 
       <div class="faq-card">
         <div class="faq-header">
-          Where is my data stored?
+          Where is my garage data stored?
           <i class="fa-solid fa-chevron-down faq-icon"></i>
         </div>
         <div class="faq-body">
@@ -900,7 +1058,7 @@
             <img src="assets/orbit-garage-icon-96.png" alt="VehiMinder Logo">
             <span>VehiMinder</span>
           </a>
-          <p>Your intelligent vehicle maintenance partner. Track logs, schedule upkeep, and protect resale value.</p>
+          <p>Your intelligent vehicle maintenance partner for cars, bikes, scooters, and EVs.</p>
         </div>
 
         <div>
@@ -921,15 +1079,29 @@
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>&copy; 2026 VehiMinder. All rights reserved.</div>
-        <div>Built for smart vehicle ownership.</div>
+      <!-- Custom Attribution Footer -->
+      <div class="footer-bottom-custom">
+        <div class="meta-line">© 2026 Venkatesh K · VehiMinder · Version 2.4.0</div>
+        <div>Made with <span class="heart-icon">❤️</span> in India</div>
+        <div class="credit-details">
+          Lead Developer & Architect: Venkatesh K &nbsp;·&nbsp; Development Assistant: Claude Code (Anthropic)<br>
+          Designed and engineered by Venkatesh K, with Claude Code for accelerated development
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- Interactive JavaScript -->
   <script>
+    // Engine Start Splash Overlay Hide Action
+    const startEngineBtn = document.getElementById('startEngineBtn');
+    const splashOverlay = document.getElementById('splashOverlay');
+
+    startEngineBtn.addEventListener('click', () => {
+      splashOverlay.style.opacity = '0';
+      splashOverlay.style.visibility = 'hidden';
+    });
+
     // Navbar Scroll Background Transition
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -974,7 +1146,7 @@
       });
     });
 
-    // Animated Numbers Odometer
+    // Animated Odometer Stats
     const statsObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
