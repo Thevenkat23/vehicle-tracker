@@ -1,1044 +1,1004 @@
 <!DOCTYPE html>
-<!-- VehiMinder — "Roadbook Edition" visual redesign. Original design system; no assets or layout copied from any other product. -->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VehiMinder — care for every ride</title>
-<meta name="description" content="Log fuel, service, oil changes, documents and trips for every vehicle you own. VehiMinder works out your real mileage, running cost per kilometre, and what's due next. Android, free, works offline.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VehiMinder - Smart Vehicle Maintenance & Expense Tracker</title>
+  
+  <!-- SEO & Open Graph Meta Tags -->
+  <meta name="description" content="Track vehicle service history, mileage, fuel logs, and maintenance schedules effortless with VehiMinder. Smart reminders and detailed cost analytics.">
+  <link rel="canonical" href="https://thevenkat23.github.io/vehicle-tracker/">
+  <meta property="og:title" content="VehiMinder - Vehicle Maintenance & Expense Tracker">
+  <meta property="og:description" content="Never miss an oil change or service date again. Track mileage, fuel logs, and upkeep costs.">
+  <meta property="og:image" content="assets/orbit-garage-icon-512.png">
+  <meta property="og:url" content="https://thevenkat23.github.io/vehicle-tracker/">
+  <meta property="og:type" content="website">
 
-<!-- TODO: replace with your real production domain once the site is deployed -->
-<link rel="canonical" href="https://thevenkat23.github.io/vehicle-tracker/">
+  <!-- Favicon & Web App Manifest -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/orbit-garage-icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/orbit-garage-icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#6366f1">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="VehiMinder">
-<meta property="og:title" content="VehiMinder — care for every ride">
-<meta property="og:description" content="Log fuel, service, oil changes, documents and trips for every vehicle you own. Free, offline-first, no account required.">
-<!-- TODO: replace og:url with your real production domain -->
-<meta property="og:url" content="https://thevenkat23.github.io/vehicle-tracker/">
-<!-- TODO: swap for a real app screenshot once available — using the app icon as a placeholder social-preview image -->
-<meta property="og:image" content="https://thevenkat23.github.io/vehicle-tracker/assets/orbit-garage-icon-512.png">
-<meta property="og:image:width" content="512">
-<meta property="og:image:height" content="512">
-<meta property="og:locale" content="en_IN">
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="VehiMinder — care for every ride">
-<meta name="twitter:description" content="Log fuel, service, oil changes, documents and trips for every vehicle you own. Free, offline-first, no account required.">
-<!-- TODO: swap for a real app screenshot once available -->
-<meta name="twitter:image" content="https://thevenkat23.github.io/vehicle-tracker/assets/orbit-garage-icon-512.png">
-
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/orbit-garage-icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/orbit-garage-icon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon-180.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#101827">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- JSON-LD: SoftwareApplication -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "VehiMinder",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Android",
-  "description": "Log fuel, service, oil changes, documents and trips for every vehicle you own. Works out real mileage and running cost per kilometre. Offline-first, no account required.",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
-  "url": "https://thevenkat23.github.io/vehicle-tracker/",
-  "image": "https://thevenkat23.github.io/vehicle-tracker/assets/orbit-garage-icon-512.png"
-}
-</script>
-
-<style>
-  /* ==========================================================
-     ROADBOOK EDITION — design tokens
-     Colour is applied by CATEGORY, not decoration:
-       teal    = fuel / EV / route
-       cobalt  = app / download actions
-       orange  = service / maintenance
-       lime    = safe / completed status
-       violet  = documents / reminders
-       coral   = expired / overdue status
-     Contrast rule (WCAG AA, audited): navy text on cream/white
-     always passes. Cobalt passes as text on cream. Teal/orange/
-     lime/coral only pass as TEXT on navy — everywhere else they
-     appear as solid chips/icon-badges with navy text on top.
-     ========================================================== */
-  :root{
-    --navy:#101827;
-    --navy-2:#1B2436;
-    --cream:#FFF9F0;
-    --cream-2:#F5EDDD;
-    --teal:#0FA3B1;
-    --cobalt:#3867E8;
-    --cobalt-lit:#7C97F2;
-    --orange:#F47B3A;
-    --lime:#79C842;
-    --violet:#8B5CF6;
-    --violet-chip:#A78BFA;   /* lighter violet — used only where navy TEXT sits on top, for AA contrast */
-    --coral:#E85D5D;
-
-    --ink:var(--navy);
-    --ink-soft:#4B5872;        /* muted body text on cream — AA safe */
-    --muted-on-dark:#A9B4C7;   /* muted text on navy — AA safe */
-    --rule:rgba(16,24,39,.10);
-    --rule-dark:rgba(255,255,255,.12);
-    --card-bg:#FFFFFF;
-    --card-border:rgba(16,24,39,.08);
-    --shadow-sm:0 6px 18px rgba(16,24,39,.07);
-    --shadow-md:0 16px 34px rgba(16,24,39,.10);
-
-    --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:20px;
-    --sp-5:32px; --sp-6:56px; --sp-7:88px;
-    --radius-card:20px;
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "VehiMinder",
+    "operatingSystem": "ANDROID",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Smart vehicle tracking, maintenance reminders, fuel logging, and service history."
   }
+  </script>
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Instrument Sans',system-ui,sans-serif;
-    font-size:17px;line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
-  svg{display:block}
-  img{max-width:100%}
-  section, header, footer{position:relative}
-
-  h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.03em;color:var(--navy)}
-  h2{font-weight:800;line-height:1.08;font-size:clamp(1.9rem,4vw,2.6rem)}
-
-  /* subtle road/map-line texture — decorative background, used sparingly */
-  .roadline-bg{
-    background-image:
-      radial-gradient(rgba(16,24,39,.05) 1px, transparent 1.4px),
-      repeating-linear-gradient(100deg, rgba(16,24,39,.035) 0 2px, transparent 2px 34px);
-    background-size:22px 22px, auto;
-  }
-
-  /* ---------- nav ---------- */
-  .nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,249,240,.5);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid transparent;
-    transition:background .25s ease, border-color .25s ease, box-shadow .25s ease;
-  }
-  .nav.solid{
-    background:rgba(255,249,240,.94);
-    border-bottom-color:var(--rule);
-    box-shadow:0 6px 20px rgba(16,24,39,.05);
-  }
-  .nav-in{position:relative;display:flex;align-items:center;justify-content:space-between;height:68px}
-  .brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.04rem;letter-spacing:-.01em;color:var(--navy);text-decoration:none}
-  .brand-mark{width:30px;height:30px;display:block;object-fit:contain;border-radius:8px}
-  .nav-links{display:flex;align-items:center;gap:28px}
-  .nav-links a:not(.btn){color:var(--ink-soft);text-decoration:none;font-size:.92rem;font-weight:600;transition:color .2s}
-  .nav-links a:not(.btn):hover{color:var(--navy)}
-  .nav-toggle{display:none;background:none;border:0;color:var(--navy);padding:8px;margin:-8px -8px -8px 8px;cursor:pointer;border-radius:8px}
-  .nav-toggle:hover{background:rgba(16,24,39,.06)}
-  .nav-toggle svg{width:22px;height:22px}
-
-  /* ---------- buttons ---------- */
-  .btn{display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border-radius:13px;font-weight:700;font-size:.95rem;text-decoration:none;border:0;cursor:pointer;transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
-  .btn-cobalt{background:var(--cobalt);color:#fff;box-shadow:0 10px 26px rgba(56,103,232,.32)}
-  .btn-cobalt:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(56,103,232,.4)}
-  .btn-outline{background:transparent;color:var(--navy);border:1.5px solid rgba(16,24,39,.16)}
-  .btn-outline:hover{background:rgba(16,24,39,.05)}
-  .btn-sm{padding:9px 16px;font-size:.82rem;border-radius:10px}
-  .btn small{display:block;font-size:.68rem;font-weight:500;opacity:.85;line-height:1.2}
-  .nav .btn-cobalt{padding:10px 18px;font-size:.86rem}
-
-  a:focus-visible,.btn:focus-visible,.nav-toggle:focus-visible,summary:focus-visible,.shot:focus-visible,img:focus-visible{
-    outline:2px solid var(--cobalt);outline-offset:3px;border-radius:6px;
-  }
-
-  @media (max-width:860px){
-    .nav-toggle{display:inline-flex}
-    .nav-links{
-      position:absolute;top:68px;left:0;right:0;background:var(--cream);
-      border-bottom:1px solid var(--rule);flex-direction:column;align-items:flex-start;gap:0;
-      max-height:0;overflow:hidden;opacity:0;transition:max-height .25s ease, opacity .2s ease;
-      padding:0 28px;
+  <style>
+    /* ==========================================================================
+       Vibrant Cyber-Modern Theme CSS
+       ========================================================================== */
+    :root {
+      --bg-dark: #070a12;
+      --bg-card: rgba(18, 24, 43, 0.65);
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --border-glow: rgba(0, 242, 254, 0.3);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #00f2fe;
+      --electric-blue: #4facfe;
+      --violet: #7f00ff;
+      --neon-pink: #ff007f;
+      --grad-glow: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #7f00ff 100%);
+      --grad-text: linear-gradient(135deg, #00f2fe 0%, #00d2ff 40%, #9d4edd 100%);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
     }
-    .nav-links.open{max-height:320px;opacity:1;padding:10px 28px 20px}
-    .nav-links a{padding:12px 0;width:100%;border-bottom:1px solid var(--rule)}
-    .nav-links .btn{width:100%;justify-content:center;margin-top:6px}
-  }
 
-  /* ---------- hero ---------- */
-  .hero{padding:64px 0 var(--sp-6);overflow:hidden}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--coral);margin-bottom:22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  }
-  .eyebrow span{color:var(--ink-soft)}
-  h1.headline{font-weight:800;font-size:clamp(2.5rem,5.6vw,3.9rem);line-height:1.04;letter-spacing:-.035em;color:var(--navy);margin-bottom:20px}
-  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:52ch;margin-bottom:34px}
-
-  .odo-block{margin-bottom:34px}
-  .odo-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
-  .odo{
-    display:inline-flex;align-items:stretch;gap:4px;background:var(--navy);
-    border:1px solid rgba(16,24,39,.15);border-radius:12px;padding:12px;
-    box-shadow:inset 0 2px 14px rgba(0,0,0,.5), 0 10px 26px rgba(16,24,39,.16);
-  }
-  .drum{width:clamp(28px,6.6vw,42px);height:clamp(44px,9.6vw,62px);overflow:hidden;position:relative;background:linear-gradient(180deg,#26314A 0%,#1A2338 46%,#141B2C 54%,#26314A 100%);border-radius:5px}
-  .drum.tenth{background:linear-gradient(180deg,#7A3B12 0%,#5A2A0C 46%,#4A220A 54%,#7A3B12 100%)}
-  .drum::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.5),transparent 26%,transparent 74%,rgba(0,0,0,.5))}
-  .reel{display:flex;flex-direction:column;transform:translateY(0);transition:transform 1.5s cubic-bezier(.16,.9,.24,1)}
-  .reel span{height:clamp(44px,9.6vw,62px);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.25rem,3.1vw,1.85rem);color:#F5F7FA}
-  .drum.tenth .reel span{color:#FFDCAE}
-  .odo-unit{align-self:flex-end;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted-on-dark);padding:0 4px 12px 8px}
-
-  .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:26px}
-  .trust-row{display:flex;flex-wrap:wrap;gap:10px 20px}
-  .trust-row span{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;color:var(--ink-soft)}
-  .trust-row svg{width:15px;height:15px;color:var(--lime);flex-shrink:0}
-
-  /* proof chips */
-  .proof-chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--sp-6)}
-  .chip{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:.88rem;color:var(--navy)}
-  .chip svg{width:17px;height:17px}
-  .chip-teal{background:var(--teal)}
-  .chip-orange{background:var(--orange)}
-  .chip-violet{background:var(--violet-chip)}
-
-  /* ---------- hero visual: phone + route map + vehicle silhouettes ---------- */
-  .hero-visual{position:relative;height:520px;display:flex;align-items:center;justify-content:center}
-  .route-map{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-  .hero-phone{
-    position:relative;z-index:3;width:230px;height:472px;border-radius:34px;
-    background:var(--navy);padding:10px;box-shadow:var(--shadow-md), 0 30px 60px rgba(16,24,39,.18);
-  }
-  .hero-phone .screen{width:100%;height:100%;border-radius:24px;overflow:hidden;background:var(--navy-2);position:relative}
-  .hero-phone img{width:100%;height:100%;object-fit:cover;display:block}
-  .hero-phone .shot-fallback{
-    width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-    color:var(--muted-on-dark);text-align:center;padding:20px;border-radius:24px;border:1px dashed rgba(255,255,255,.22);
-  }
-  .hero-phone .shot-fallback svg{width:32px;height:32px;opacity:.55}
-  .hero-phone .shot-fallback span{font-size:.8rem;line-height:1.4}
-
-  .veh{position:absolute;width:38px;margin-left:-19px;color:var(--navy);opacity:.85;animation-timing-function:ease-in-out;animation-iteration-count:infinite;z-index:2}
-  .veh svg{width:100%;height:auto;overflow:visible}
-  .veh .wheel{transform-box:fill-box;transform-origin:center}
-  .veh-scooter{left:2%;top:70%;animation:hDriveRight 16s infinite}
-  .veh-scooter .wheel{animation:wheelSpin .8s linear infinite}
-  .veh-car{left:96%;top:22%;width:46px;margin-left:-23px;animation:hDriveLeft 20s infinite}
-  .veh-car .wheel{animation:wheelSpin 1s linear infinite}
-  .veh-bike{left:88%;top:82%;width:30px;margin-left:-15px;animation:hLoop 13s infinite}
-  .veh-bike .wheel{animation:wheelSpin .65s linear infinite}
-  .veh-ev{left:6%;top:14%;width:28px;margin-left:-14px;animation:evPulse 3.2s ease-in-out infinite}
-
-  @keyframes hDriveRight{0%{left:2%;top:70%}50%{left:46%;top:52%}100%{left:2%;top:70%}}
-  @keyframes hDriveLeft{0%{left:96%;top:22%}50%{left:56%;top:40%}100%{left:96%;top:22%}}
-  @keyframes hLoop{0%{left:88%;top:82%}25%{left:96%;top:66%}50%{left:88%;top:50%}75%{left:80%;top:66%}100%{left:88%;top:82%}}
-  @keyframes wheelSpin{to{transform:rotate(360deg)}}
-  @keyframes evPulse{0%,100%{opacity:.4;filter:drop-shadow(0 0 0 rgba(15,163,177,0))}50%{opacity:.9;filter:drop-shadow(0 0 6px rgba(15,163,177,.6))}}
-  @keyframes dashMove{to{stroke-dashoffset:-120}}
-
-  @media (max-width:960px){
-    .hero-grid{grid-template-columns:1fr;gap:44px}
-    .hero-visual{height:400px}
-    .hero-phone{width:190px;height:390px}
-  }
-  @media (max-width:600px){
-    .veh-car,.veh-bike,.veh-ev{display:none}
-  }
-
-  /* Mobile: keep exactly one lightweight vehicle (the scooter) — never display:none.
-     Path is confined to the left margin strip beside the phone mock-up so it's
-     never occluded by the (higher z-index) phone, and never crosses behind the
-     heading/CTA, which sit in the text column above this one on mobile. */
-  @media (max-width:480px){
-    .hero-visual{overflow:visible}
-    .veh-scooter{
-      display:block;
-      width:30px;margin-left:-15px;
-      left:0%;top:66%;
-      opacity:1;z-index:2;
-      animation:mobileScooter 12s ease-in-out infinite;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
-    .veh-scooter .wheel{animation:wheelSpin 1.1s linear infinite}
-  }
-  @keyframes mobileScooter{
-    0%  {left:0%;  top:66%}
-    50% {left:17%; top:52%}
-    100%{left:0%;  top:66%}
-  }
 
-  /* ---------- sections ---------- */
-  .sec{padding:var(--sp-7) 0}
-  .sec-head{max-width:62ch;margin-bottom:44px}
-  .sec-head p{margin-top:14px;color:var(--ink-soft);font-size:1.04rem}
-  .eyebrow-sm{font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);margin-bottom:10px;display:block}
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-  .band-cream2{background:var(--cream-2)}
-  .band-navy{background:var(--navy);color:#fff}
-  .band-navy h2{color:#fff}
-  .band-navy .sec-head p{color:var(--muted-on-dark)}
+    /* Ambient Glowing Background Orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      animation: floatGlow 12s ease-in-out infinite alternate;
+    }
 
-  /* ---------- dashboard cards ---------- */
-  .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .dash-card{background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-  .dash-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
-  .dash-cobalt::before{background:var(--cobalt)}
-  .dash-teal::before{background:var(--teal)}
-  .dash-orange::before{background:var(--orange)}
-  .dash-label{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.82rem;color:#fff;padding:6px 12px;border-radius:999px;margin-bottom:18px}
-  .dash-cobalt .dash-label{background:var(--cobalt)}
-  .dash-teal .dash-label{background:var(--teal);color:var(--navy)}
-  .dash-orange .dash-label{background:var(--orange);color:var(--navy)}
-  .dash-label svg{width:14px;height:14px}
-  .dash-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(1.9rem,4vw,2.6rem);letter-spacing:-.02em;color:var(--navy);line-height:1;margin-bottom:8px}
-  .dash-num span{font-size:.48em;font-weight:500}
-  .dash-card p{color:var(--ink-soft);font-size:.94rem;line-height:1.5}
-  .dash-spark{width:100%;height:34px;margin-top:16px;opacity:.9}
-  .dash-illustrative{
-    display:inline-block;margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:.66rem;
-    letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);opacity:.75;
-  }
+    .bg-orb-1 {
+      top: -10vw;
+      left: -10vw;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, var(--cyan) 0%, rgba(127, 0, 255, 0) 70%);
+    }
 
-  /* ---------- bento feature grid ---------- */
-  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:18px}
-  .b-card{
-    background:#fff;border:1px solid var(--card-border);border-radius:var(--radius-card);
-    padding:26px;position:relative;overflow:hidden;
-    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    display:flex;flex-direction:column;
-  }
-  .b-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:rgba(16,24,39,.14)}
-  .b-card:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
-  .b-corner{position:absolute;top:0;right:0;width:72px;height:72px;border-radius:0 20px 0 100%;opacity:.14}
-  .b-teal .b-corner{background:var(--teal)} .b-orange .b-corner{background:var(--orange)}
-  .b-coral .b-corner{background:var(--coral)} .b-violet .b-corner{background:var(--violet)}
-  .b-cobalt .b-corner{background:var(--cobalt)}
-  .b-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;color:var(--navy)}
-  .b-teal .b-icon{background:var(--teal)} .b-orange .b-icon{background:var(--orange)}
-  .b-coral .b-icon{background:var(--coral)} .b-violet .b-icon{background:var(--violet)}
-  .b-cobalt .b-icon{background:var(--cobalt);color:#fff}
-  .b-icon svg{width:22px;height:22px}
-  .b-card h3{font-size:1.05rem;font-weight:700;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px}
-  .b-card p{color:var(--ink-soft);font-size:.9rem;line-height:1.5}
-  .b-wide{grid-column:span 2}
+    .bg-orb-2 {
+      bottom: 10vw;
+      right: -10vw;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, var(--violet) 0%, rgba(0, 242, 254, 0) 70%);
+      animation-delay: -6s;
+    }
 
-  @media (max-width:900px){
-    .dash-grid{grid-template-columns:1fr}
-    .bento{grid-template-columns:repeat(2,1fr)}
-    .b-wide{grid-column:span 2}
-  }
-  @media (max-width:560px){
-    .bento{grid-template-columns:1fr}
-    .b-wide{grid-column:span 1}
-  }
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 50px) scale(1.15); }
+    }
 
-  /* ---------- how it works (route timeline) ---------- */
-  .route-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative;margin-top:12px}
-  .route-line{position:absolute;top:23px;left:8%;right:8%;height:3px;z-index:0}
-  .route-line svg{width:100%;height:6px;display:block;overflow:visible}
-  .route-step{position:relative;z-index:1;text-align:left}
-  .route-pin{
-    width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
-    font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy);margin-bottom:18px;
-    box-shadow:0 8px 20px rgba(16,24,39,.14);
-  }
-  .route-pin.p1{background:var(--teal)} .route-pin.p2{background:var(--orange)} .route-pin.p3{background:var(--lime)}
-  .route-step h3{font-size:1.08rem;margin-bottom:8px}
-  .route-step p{color:var(--ink-soft);font-size:.94rem}
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.25rem 2rem;
+      transition: all 0.3s ease;
+      background: rgba(7, 10, 18, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-  @media (max-width:760px){
-    .route-steps{grid-template-columns:1fr;gap:36px}
-    .route-line{display:none}
-  }
+    .navbar.scrolled {
+      padding: 0.85rem 2rem;
+      background: rgba(7, 10, 18, 0.85);
+      border-bottom: 1px solid var(--border-glass);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
 
-  /* ---------- screenshot gallery ---------- */
-  .gal-band{background:linear-gradient(135deg, rgba(15,163,177,.10), rgba(139,92,246,.08) 55%, rgba(244,123,58,.08))}
-  .swipe-cue{display:none;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:-24px 0 22px}
-  .swipe-cue svg{width:15px;height:15px;color:var(--cobalt)}
-  @media (hover:none) and (pointer:coarse){ .swipe-cue{display:flex} }
-  .gallery{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 18px;scroll-snap-type:x mandatory;scrollbar-width:thin}
-  .shot{flex:0 0 auto;scroll-snap-align:start;width:210px}
-  .shot:focus-visible{outline:2px solid var(--cobalt);outline-offset:4px;border-radius:20px}
-  .shot-frame{width:210px;height:442px;border-radius:26px;background:var(--navy);border:1px solid rgba(16,24,39,.12);padding:10px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
-  .shot-frame img{width:100%;height:100%;object-fit:cover;border-radius:18px;display:block}
-  .shot-fallback{width:100%;height:100%;border-radius:18px;border:1px dashed rgba(255,255,255,.22);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted-on-dark);text-align:center;padding:18px}
-  .shot-fallback svg{width:28px;height:28px;opacity:.6}
-  .shot-fallback span{font-size:.76rem;line-height:1.4}
-  .shot-cap{margin-top:12px;font-size:.85rem;color:var(--ink-soft);text-align:center;font-weight:600}
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  /* ---------- scan spotlight (kept) ---------- */
-  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .steps{margin-top:26px;display:grid;gap:2px}
-  .step{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;padding:12px 0;border-bottom:1px solid var(--rule-dark)}
-  .step:last-child{border-bottom:0}
-  .step b{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--teal);font-weight:700;padding-top:2px}
-  .step span{color:#D7DEEA;font-size:.97rem}
-  .receipt{background:#F7F8FA;color:var(--navy);border-radius:6px;padding:26px 24px;font-family:'JetBrains Mono',monospace;font-size:.82rem;box-shadow:0 24px 60px rgba(0,0,0,.35);position:relative;transform:rotate(-1.1deg)}
-  .receipt::before,.receipt::after{content:"";position:absolute;left:0;right:0;height:9px;background:repeating-linear-gradient(90deg,#F7F8FA 0 9px,transparent 9px 18px)}
-  .receipt::before{top:-4px} .receipt::after{bottom:-4px}
-  .r-top{text-align:center;border-bottom:1px dashed #9AA5B1;padding-bottom:12px;margin-bottom:12px}
-  .r-top b{font-size:.9rem;letter-spacing:.06em}
-  .r-top em{display:block;font-style:normal;color:var(--ink-soft);font-size:.72rem;margin-top:5px}
-  .r-line{display:flex;justify-content:space-between;padding:5px 0}
-  .r-line.tot{border-top:1px dashed #9AA5B1;margin-top:11px;padding-top:11px;font-weight:700;font-size:.95rem}
-  .r-cap{margin-top:16px;padding-top:12px;border-top:1px dashed #9AA5B1;text-align:center;color:var(--teal);font-size:.72rem;letter-spacing:.05em}
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
 
-  /* ---------- privacy: "Your garage stays yours" ---------- */
-  .garage-visual{display:flex;align-items:center;justify-content:center}
-  .garage-visual svg{width:100%;max-width:280px;height:auto}
-  .privacy-note{margin-top:22px;font-size:.86rem;color:var(--muted-on-dark);border-top:1px solid var(--rule-dark);padding-top:18px}
+    .brand-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    }
 
-  /* ---------- FAQ ---------- */
-  .faq{border-top:1px solid var(--rule)}
-  .faq-item{border-bottom:1px solid var(--rule)}
-  .faq-item summary{padding:22px 4px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700;color:var(--navy);font-size:1.02rem}
-  .faq-item summary::-webkit-details-marker{display:none}
-  .faq-item summary .plus{flex-shrink:0;width:22px;height:22px;color:var(--cobalt);transition:transform .2s ease}
-  .faq-item[open] summary .plus{transform:rotate(45deg)}
-  .faq-item p{color:var(--ink-soft);padding:0 4px 22px;max-width:68ch;font-size:.97rem}
+    .brand-logo span {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  /* ---------- final CTA ---------- */
-  .final-cta{background:linear-gradient(120deg, var(--cobalt), #5B4FE0 60%, var(--violet));color:#fff;overflow:hidden}
-  .final-cta h2{color:#fff}
-  .final-cta p{color:rgba(255,255,255,.88)}
-  .final-road{position:absolute;left:0;right:0;bottom:0;height:60px;overflow:hidden;pointer-events:none}
-  .final-road svg{width:100%;height:100%}
-  .final-cta .btn-outline{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.4)}
-  .final-cta .btn-outline:hover{background:rgba(255,255,255,.16)}
-  .final-note{margin-top:16px;font-size:.86rem;color:rgba(255,255,255,.75)}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
 
-  /* ---------- footer ---------- */
-  footer{padding:48px 0 36px;border-top:1px solid var(--rule);background:var(--cream-2)}
-  .f-in{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;align-items:flex-start}
-  .f-l{max-width:34ch}
-  .f-l p{color:var(--ink-soft);font-size:.9rem;margin-top:10px}
-  .f-r{display:flex;gap:32px;flex-wrap:wrap}
-  .f-col h4{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
-  .f-col a{display:block;color:var(--navy);text-decoration:none;font-size:.92rem;padding:4px 0;opacity:.8}
-  .f-col a:hover{opacity:1;color:var(--cobalt)}
-  .f-bot{margin-top:36px;padding-top:20px;border-top:1px solid var(--rule);font-size:.84rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  .f-credit{margin-top:14px;display:flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--ink-soft);opacity:.85}
-  .f-credit-note{font-style:italic;opacity:.8;margin-top:4px}
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
 
-  /* ---------- reveal ---------- */
-  .rise{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-  .rise.in{opacity:1;transform:none}
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
 
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none !important;transition:none !important}
-    .rise{opacity:1;transform:none}
-    .gallery{scroll-behavior:auto}
-    .b-card:hover,.btn:hover{transform:none}
-  }
+    /* Shimmer Button */
+    .btn-glow {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.85rem 1.8rem;
+      background: var(--grad-glow);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      overflow: hidden;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(79, 172, 254, 0.35);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-  .vehicle-strip{padding-top:var(--sp-7);padding-bottom:0}
-  .vs-head{text-align:center;max-width:60ch;margin:0 auto var(--sp-6)}
-  .vs-title{font-size:clamp(1.6rem,3.4vw,2.2rem)}
-  .vs-row{
-    display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;
-    gap:clamp(20px,5vw,56px);
-  }
-  .vs-item{display:flex;flex-direction:column;align-items:center;gap:12px}
-  .vs-ico{width:clamp(64px,12vw,88px);height:auto;display:block}
-  .vs-label{
-    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--ink-soft);
-  }
-  @media (max-width:520px){ .vs-row{gap:24px} }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s ease;
+    }
 
-</style>
+    .btn-glow:hover::before {
+      left: 100%;
+    }
+
+    .btn-glow:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+    }
+
+    /* Mobile Nav Toggle */
+    .mobile-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* Container Standard */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 11rem 0 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      border-radius: 30px;
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title span {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2.25rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-mockup-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-mockup-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: var(--grad-glow);
+      filter: blur(70px);
+      opacity: 0.35;
+      border-radius: 50%;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+
+    .hero-mockup-img {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 28px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 242, 254, 0.2);
+      border: 2px solid var(--border-glass);
+      animation: floatImage 6s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(1deg); }
+    }
+
+    /* Counter / Stats Bar */
+    .stats-section {
+      padding: 3rem 0;
+      margin-bottom: 5rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(16px);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 4rem;
+    }
+
+    .section-subtitle {
+      color: var(--cyan);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Features Grid (Glassmorphism & 3D Tilt) */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 7rem;
+    }
+
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2.5rem 2rem;
+      border-radius: var(--radius-xl);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--grad-glow);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-glow);
+      box-shadow: 0 20px 40px rgba(0, 242, 254, 0.15);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(0, 242, 254, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+
+    .feature-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* App Screenshots Carousel / Grid */
+    .screenshots-section {
+      padding: 4rem 0 7rem;
+    }
+
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.25rem;
+    }
+
+    .screenshot-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 0.5rem;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .screenshot-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .screenshot-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--cyan);
+      box-shadow: 0 15px 30px rgba(0, 242, 254, 0.25);
+    }
+
+    .screenshot-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* FAQ Section Accordion */
+    .faq-section {
+      padding-bottom: 7rem;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .faq-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .faq-card.active {
+      border-color: var(--cyan);
+    }
+
+    .faq-header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .faq-icon {
+      color: var(--cyan);
+      transition: transform 0.3s ease;
+    }
+
+    .faq-card.active .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+      padding: 0 2rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .faq-card.active .faq-body {
+      max-height: 300px;
+      padding: 0 2rem 1.5rem 2rem;
+    }
+
+    /* CTA Banner Section */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.1) 0%, rgba(127, 0, 255, 0.15) 100%);
+      border: 1px solid var(--border-glow);
+      border-radius: 32px;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 6rem;
+    }
+
+    .cta-banner h2 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-glass);
+      padding: 4rem 0 2rem;
+      background: rgba(5, 7, 13, 0.95);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      margin-top: 1rem;
+      max-width: 350px;
+      font-size: 0.9rem;
+    }
+
+    .footer-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--text-main);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Mobile Responsive Rules */
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 9rem;
+      }
+      .hero-subtitle {
+        margin: 0 auto 2rem;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .screenshots-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(7, 10, 18, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-glass);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .screenshots-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="nav" id="siteNav">
-  <div class="wrap nav-in">
-    <a href="index.html" class="brand"><img class="brand-mark" src="assets/orbit-garage-icon-96.png" alt="VehiMinder logo"> VehiMinder</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#features">Features</a>
-      <a href="#screenshots">Screens</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="#faq">FAQ</a>
-      <!-- Replace # with your Play Store link once the app is published -->
-      <a href="#" class="btn btn-cobalt btn-sm">Get the app</a>
+  <!-- Background Ambient Mesh Glow -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <img src="assets/orbit-garage-icon-96.png" alt="VehiMinder Logo">
+        <span>VehiMinder</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">App Preview</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="#" class="btn-glow" style="padding: 0.6rem 1.4rem;"><i class="fa-brands fa-google-play"></i> Get App</a></li>
+      </ul>
+      <div class="mobile-toggle" id="menuToggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow">Android <span>·</span> Free <span>·</span> No ads <span>·</span> Works offline</div>
-      <h1 class="headline">Care for<br>every ride.</h1>
-      <p class="lede">Log fuel, service, oil changes, documents and trips for every vehicle you own. VehiMinder works out your real running cost per kilometre, your true mileage, and what's due next.</p>
+  <!-- Hero Section -->
+  <header class="container hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fa-solid fa-bolt"></i> Ultimate Vehicle Companion
+      </div>
+      <h1 class="hero-title">Track Maintenance & <span>Drive Worry-Free</span></h1>
+      <p class="hero-subtitle">
+        Intelligent service reminders, real-time mileage tracking, fuel log analytics, and digital receipt scans all organized in one sleek garage app.
+      </p>
+      <div class="hero-actions">
+        <a href="#" class="btn-glow">
+          <i class="fa-brands fa-google-play fa-lg"></i> Get on Google Play
+        </a>
+        <a href="#features" class="btn-glow" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); box-shadow: none;">
+          Explore Features
+        </a>
+      </div>
+    </div>
 
-      <div class="odo-block">
-        <div class="odo-label">Odometer · Classic 350</div>
-        <div class="odo" id="odo" role="img" aria-label="Odometer reading: 016951 kilometres">
-          <div class="drum"><div class="reel" data-d="0"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="drum"><div class="reel" data-d="1"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="drum"><div class="reel" data-d="6"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="drum"><div class="reel" data-d="9"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="drum"><div class="reel" data-d="5"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="drum tenth"><div class="reel" data-d="1"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>
-          <div class="odo-unit">km</div>
+    <div class="hero-mockup-wrap">
+      <div class="hero-mockup-glow"></div>
+      <img src="assets/screenshot-dashboard.png" alt="VehiMinder Dashboard Screenshot" class="hero-mockup-img">
+    </div>
+  </header>
+
+  <!-- Live Stats Bar -->
+  <section class="container stats-section">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-number" data-target="100000">0</div>
+        <div class="stat-label">Miles & KM Tracked</div>
+      </div>
+      <div>
+        <div class="stat-number" data-target="100">0%</div>
+        <div class="stat-label">On-Time Reminders</div>
+      </div>
+      <div>
+        <div class="stat-number" data-target="0">0</div>
+        <div class="stat-label">Cloud Sync Latency ($0 Extra)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="container" id="features">
+    <div class="section-header">
+      <span class="section-subtitle">Powerful Capabilities</span>
+      <h2 class="section-title">Everything Your Garage Needs in One Place</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+        <h3 class="feature-title">Smart Reminders</h3>
+        <p class="feature-desc">Never forget oil changes, tire rotations, brake checks, or insurance renewals with automated mileage & date alerts.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-gas-pump"></i></div>
+        <h3 class="feature-title">Fuel & Expense Analytics</h3>
+        <p class="feature-desc">Log fuel fill-ups to calculate real-world MPG/KMPL, track spending trends, and optimize overall running costs.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-camera"></i></div>
+        <h3 class="feature-title">Receipt Digitalization</h3>
+        <p class="feature-desc">Attach photos of repair bills, parts receipts, and inspection reports directly to specific vehicle records.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-warehouse"></i></div>
+        <h3 class="feature-title">Multi-Vehicle Garage</h3>
+        <p class="feature-desc">Manage cars, motorcycles, trucks, and SUVs simultaneously with customized maintenance rules per vehicle.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+        <h3 class="feature-title">Detailed Reports</h3>
+        <p class="feature-desc">Export formatted vehicle service histories for potential buyers to boost your resale value effortlessly.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="feature-title">Offline & Secure</h3>
+        <p class="feature-desc">Your garage data is saved locally on your device with high-speed performance and complete privacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Screenshots Showcase -->
+  <section class="container screenshots-section" id="screenshots">
+    <div class="section-header">
+      <span class="section-subtitle">Visual Interface</span>
+      <h2 class="section-title">Designed for Speed & Clarity</h2>
+    </div>
+
+    <div class="screenshots-grid">
+      <div class="screenshot-item">
+        <img src="assets/screenshot-dashboard.png" alt="Dashboard View">
+      </div>
+      <div class="screenshot-item">
+        <img src="assets/screenshot-vehicle.png" alt="Vehicle Profile View">
+      </div>
+      <div class="screenshot-item">
+        <img src="assets/screenshot-fuel.png" alt="Fuel Logger View">
+      </div>
+      <div class="screenshot-item">
+        <img src="assets/screenshot-reports.png" alt="Expense Reports View">
+      </div>
+      <div class="screenshot-item">
+        <img src="assets/screenshot-scan.png" alt="Receipt Scanner View">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion -->
+  <section class="container faq-section" id="faq">
+    <div class="section-header">
+      <span class="section-subtitle">Got Questions?</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-card">
+        <div class="faq-header">
+          Is VehiMinder free to use?
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-body">
+          Yes! VehiMinder provides robust core tracking features including fuel logging, service records, and reminders completely free.
         </div>
       </div>
 
-      <div class="cta-row">
-        <!-- Replace # with your Play Store link once the app is published -->
-        <a href="#" class="btn btn-cobalt">Get it on Google Play <small>Coming soon</small></a>
-        <a href="#screenshots" class="btn btn-outline">See the app</a>
+      <div class="faq-card">
+        <div class="faq-header">
+          Can I manage multiple vehicles?
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-body">
+          Absolutely. You can add cars, motorcycles, scooters, and utility vehicles under a single account and toggle between them instantly.
+        </div>
       </div>
 
-      <div class="trust-row">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Offline-first</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> No account required</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Your data stays on your device</span>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <svg class="route-map" viewBox="0 0 300 480" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
-        <path d="M20,420 Q90,340 60,260 Q30,180 120,140 Q210,100 190,40" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 14" opacity=".55"/>
-        <circle cx="60" cy="260" r="6" fill="var(--orange)" opacity=".8"/>
-        <circle cx="120" cy="140" r="6" fill="var(--orange)" opacity=".8"/>
-        <circle cx="190" cy="40" r="7" fill="var(--violet)" opacity=".85"/>
-        <circle cx="20" cy="420" r="7" fill="var(--violet)" opacity=".85"/>
-      </svg>
-
-      <div class="veh veh-scooter" aria-hidden="true">
-        <svg viewBox="0 0 48 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 18h3M13 18c0-5 3-8 7-8h5l4-4h4"/><path d="M13 18h16"/>
-          <g class="wheel"><circle cx="9" cy="18" r="4"/><path d="M9 14.5v7M5.5 18h7"/></g>
-          <g class="wheel"><circle cx="33" cy="18" r="4"/><path d="M33 14.5v7M29.5 18h7"/></g>
-        </svg>
-      </div>
-      <div class="veh veh-car" aria-hidden="true">
-        <svg viewBox="0 0 52 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 16h2l3.5-6.5h15l5.5 6.5h5a2 2 0 0 1 2 2v2.5H4V18a2 2 0 0 1 0-2z"/><path d="M13 9.5h14"/>
-          <g class="wheel"><circle cx="14" cy="18.5" r="3.6"/></g><g class="wheel"><circle cx="38" cy="18.5" r="3.6"/></g>
-        </svg>
-      </div>
-      <div class="veh veh-bike" aria-hidden="true">
-        <svg viewBox="0 0 40 22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M10 15l6-7.5h5l3.5 7.5"/><path d="M16 15h9"/>
-          <g class="wheel"><circle cx="9" cy="15.5" r="4"/></g><g class="wheel"><circle cx="29" cy="15.5" r="4"/></g>
-        </svg>
-      </div>
-      <div class="veh veh-ev" aria-hidden="true" style="color:var(--teal)">
-        <svg viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 16h2l3-5h12l4 5h3a2 2 0 0 1 2 2v1.5H4V18a2 2 0 0 1 0-2z"/>
-          <circle cx="12.5" cy="18.5" r="3"/><circle cx="28.5" cy="18.5" r="3"/>
-          <path d="M20 4.5l-3.5 6h4l-3.5 6"/>
-        </svg>
-      </div>
-
-      <div class="hero-phone">
-        <div class="screen">
-          <!-- To add the real screenshot: drop assets/screenshot-dashboard.png in place — this <img> picks it up automatically. -->
-          <img src="assets/screenshot-dashboard.png" alt="VehiMinder dashboard: garage summary, vehicle list and upcoming reminders" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg>
-            <span>Screenshot coming soon</span>
-          </div>
+      <div class="faq-card">
+        <div class="faq-header">
+          Where is my data stored?
+          <i class="fa-solid fa-chevron-down faq-icon"></i>
+        </div>
+        <div class="faq-body">
+          Your data is safely stored on your local device. Read our Privacy Policy to learn more about our commitment to user privacy.
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <div class="container">
+    <section class="cta-banner">
+      <h2>Ready to Take Control of Your Garage?</h2>
+      <p>Download VehiMinder now and start keeping accurate records of your vehicle maintenance today.</p>
+      <a href="#" class="btn-glow">
+        <i class="fa-brands fa-google-play fa-lg"></i> Download on Play Store
+      </a>
+    </section>
   </div>
 
-  <div class="wrap">
-    <div class="proof-chips rise">
-      <span class="chip chip-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v13"/><path d="M13 9h2a2 2 0 0 1 2 2v2.5a1.5 1.5 0 0 0 3 0V8l-2-2"/></svg> Fuel &amp; mileage</span>
-      <span class="chip chip-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-3-3 2.6-2.6z"/></svg> Service reminders</span>
-      <span class="chip chip-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M8.5 12.5h7M8.5 16h5"/></svg> Document expiry</span>
-    </div>
-  </div>
-</header>
-
-<main>
-
-<section class="sec vehicle-strip">
-  <div class="wrap">
-    <div class="vs-head rise">
-      <span class="eyebrow-sm">One garage, every kind of ride</span>
-      <h2 class="vs-title">Bike, scooter, car or EV — it's all here.</h2>
-    </div>
-    <div class="vs-row rise" role="list" aria-label="Supported vehicle types">
-      <div class="vs-item" role="listitem">
-        <svg viewBox="0 0 64 40" class="vs-ico" aria-hidden="true">
-          <circle cx="14" cy="30" r="7" fill="none" stroke="var(--cobalt)" stroke-width="2.4"/>
-          <circle cx="50" cy="30" r="7" fill="none" stroke="var(--cobalt)" stroke-width="2.4"/>
-          <path d="M14 30 L26 18 L40 18 M50 30 L40 18 M26 18 L22 12 L16 12 M40 18 C36 24 30 26 22 26" fill="none" stroke="var(--cobalt)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M23 12 L29 12" stroke="var(--cobalt)" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-        <span class="vs-label">Motorcycle</span>
-      </div>
-      <div class="vs-item" role="listitem">
-        <svg viewBox="0 0 64 40" class="vs-ico" aria-hidden="true">
-          <circle cx="15" cy="30" r="7" fill="none" stroke="var(--teal)" stroke-width="2.4"/>
-          <circle cx="49" cy="30" r="7" fill="none" stroke="var(--teal)" stroke-width="2.4"/>
-          <path d="M15 30 C15 20 22 16 30 16 L38 16 C40 12 43 11 46 12 L44 16 C50 18 49 26 49 30" fill="none" stroke="var(--teal)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M30 16 L26 24 L40 24" fill="none" stroke="var(--teal)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="vs-label">Scooter</span>
-      </div>
-      <div class="vs-item" role="listitem">
-        <svg viewBox="0 0 64 40" class="vs-ico" aria-hidden="true">
-          <circle cx="18" cy="30" r="6.5" fill="none" stroke="var(--orange)" stroke-width="2.4"/>
-          <circle cx="46" cy="30" r="6.5" fill="none" stroke="var(--orange)" stroke-width="2.4"/>
-          <path d="M8 30 L8 24 C8 22 9 21 11 21 L20 21 L27 14 L40 14 L45 21 L54 22 C56 22 57 23 57 25 L57 30 M24.5 30 L39.5 30" fill="none" stroke="var(--orange)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M22 21 L38 21" stroke="var(--orange)" stroke-width="2.4" stroke-linecap="round"/>
-        </svg>
-        <span class="vs-label">Car</span>
-      </div>
-      <div class="vs-item" role="listitem">
-        <svg viewBox="0 0 64 40" class="vs-ico" aria-hidden="true">
-          <circle cx="18" cy="30" r="6.5" fill="none" stroke="var(--lime)" stroke-width="2.4"/>
-          <circle cx="46" cy="30" r="6.5" fill="none" stroke="var(--lime)" stroke-width="2.4"/>
-          <path d="M8 30 L8 24 C8 22 9 21 11 21 L20 21 L27 14 L40 14 L45 21 L54 22 C56 22 57 23 57 25 L57 30 M24.5 30 L39.5 30" fill="none" stroke="var(--lime)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M33 18 L30 24 L35 24 L32 30" fill="none" stroke="var(--lime)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="vs-label">EV</span>
-      </div>
-      <div class="vs-item" role="listitem">
-        <svg viewBox="0 0 64 40" class="vs-ico" aria-hidden="true">
-          <circle cx="17" cy="30" r="6.5" fill="none" stroke="var(--violet)" stroke-width="2.4"/>
-          <circle cx="47" cy="30" r="6.5" fill="none" stroke="var(--violet)" stroke-width="2.4"/>
-          <path d="M6 30 L6 15 L34 15 L34 30 M34 19 L46 19 L54 25 L54 30 M23.5 30 L40.5 30" fill="none" stroke="var(--violet)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="vs-label">Truck / other</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <span class="eyebrow-sm">At a glance</span>
-      <h2>Your vehicle's health, at a glance.</h2>
-      <p>Three numbers most people never work out — VehiMinder keeps them current automatically.</p>
-    </div>
-    <div class="dash-grid rise">
-
-      <div class="dash-card dash-cobalt">
-        <span class="dash-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"/></svg> Running cost / km</span>
-        <div class="dash-num">₹2.40<span>/km</span></div>
-        <p>Fuel and servicing, divided by the distance you actually covered.</p>
-        <svg class="dash-spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,26 20,20 40,24 60,14 80,17 100,8 120,11" fill="none" stroke="var(--cobalt)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="dash-illustrative">Illustrative example</span>
-      </div>
-
-      <div class="dash-card dash-teal">
-        <span class="dash-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v13"/><path d="M13 9h2a2 2 0 0 1 2 2v2.5a1.5 1.5 0 0 0 3 0V8l-2-2"/></svg> Actual mileage</span>
-        <div class="dash-num">38.5<span>km/L</span></div>
-        <p>Measured between full tanks — not the figure on the brochure.</p>
-        <svg class="dash-spark" viewBox="0 0 120 34" preserveAspectRatio="none"><polyline points="0,18 20,22 40,12 60,16 80,10 100,14 120,7" fill="none" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="dash-illustrative">Illustrative example</span>
-      </div>
-
-      <div class="dash-card dash-orange">
-        <span class="dash-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 7 6 11.5A6 6 0 0 1 6 13.5C6 9 12 2 12 2z"/></svg> Next maintenance</span>
-        <div class="dash-num">67<span>days</span></div>
-        <p>Oil change countdown, calculated from your live odometer.</p>
-        <svg class="dash-spark" viewBox="0 0 120 34" preserveAspectRatio="none"><circle cx="60" cy="17" r="14" fill="none" stroke="rgba(16,24,39,.12)" stroke-width="4"/><circle cx="60" cy="17" r="14" fill="none" stroke="var(--orange)" stroke-width="4" stroke-dasharray="63 88" stroke-linecap="round" transform="rotate(-90 60 17)"/></svg>
-        <span class="dash-illustrative">Illustrative example</span>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec band-cream2 roadline-bg" id="features">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <span class="eyebrow-sm">Everything, one place</span>
-      <h2>One place for every part of ownership.</h2>
-    </div>
-    <div class="bento rise">
-
-      <div class="b-card b-teal b-wide">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v13"/><path d="M3 21h10"/><path d="M13 9h2a2 2 0 0 1 2 2v2.5a1.5 1.5 0 0 0 3 0V8l-2-2"/></svg></div>
-        <h3>Fuel &amp; mileage</h3>
-        <p>Tap ₹500, pick your pump, done. It remembers your last price and estimates the odometer. Mileage is calculated only between full tanks, so the number means something.</p>
-      </div>
-
-      <div class="b-card b-orange">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-3-3 2.6-2.6z"/></svg></div>
-        <h3>Service history</h3>
-        <p>What was done, what it cost, which garage. Set a schedule by months or kilometres — whichever comes first.</p>
-      </div>
-
-      <div class="b-card b-coral">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s6 7 6 11.5A6 6 0 0 1 6 13.5C6 9 12 2 12 2z"/></svg></div>
-        <h3>Oil monitor</h3>
-        <p>Set it once at 16,000 km with a 2,000 km interval. Every fuel log updates the countdown from your real odometer.</p>
-      </div>
-
-      <div class="b-card b-violet">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4"/><path d="M8.5 12.5h7M8.5 16h5"/></svg></div>
-        <h3>Documents &amp; expiry</h3>
-        <p>RC, PUC and insurance numbers with expiry dates. A warning a week before, so you're never caught out at a checkpost.</p>
-      </div>
-
-      <div class="b-card b-teal">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M7.8 7.6C10 10 8 14 12 15.5c3 1.1 3.4 1 4 1.2"/></svg></div>
-        <h3>Trips</h3>
-        <p>Route, stops, distance — plus fuel, tolls, food and everything else, totalled per trip.</p>
-      </div>
-
-      <div class="b-card b-cobalt b-wide">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10M12 21V3M20 21v-7"/></svg></div>
-        <h3>Spending reports</h3>
-        <p>Overview, fuel, service, trips and costs broken down per vehicle — so you can see exactly where the rupees go, month to month.</p>
-      </div>
-
-      <div class="b-card b-cobalt b-wide">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8V6a2 2 0 0 1 2-2h2M4 16v2a2 2 0 0 0 2 2h2M20 8V6a2 2 0 0 0-2-2h-2M20 16v2a2 2 0 0 1-2 2h-2"/></svg></div>
-        <h3>Bill scanning</h3>
-        <p>Photograph a petrol, service or insurance bill. Text is read on your device and the fields fill themselves in — you just check and save.</p>
-      </div>
-
-      <div class="b-card b-violet">
-        <div class="b-corner" aria-hidden="true"></div>
-        <div class="b-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
-        <h3>Notifications</h3>
-        <p>Oil, service and document reminders land on your phone right when they matter — generated on your device.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <span class="eyebrow-sm">How it works</span>
-      <h2>Three steps, that's the whole flow.</h2>
-    </div>
-    <div class="route-steps rise">
-      <div class="route-line" aria-hidden="true">
-        <svg viewBox="0 0 600 6" preserveAspectRatio="none">
-          <line x1="0" y1="3" x2="600" y2="3" stroke="var(--teal)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 13" style="animation:dashMove 6s linear infinite"/>
-        </svg>
-      </div>
-      <div class="route-step">
-        <div class="route-pin p1">1</div>
-        <h3>Add your vehicle</h3>
-        <p>Bike, scooter, car or EV — name it, set its registration number, odometer and fuel type.</p>
-      </div>
-      <div class="route-step">
-        <div class="route-pin p2">2</div>
-        <h3>Log what happens</h3>
-        <p>Fuel, service, oil changes, documents and trips — in a few taps, or by scanning the bill.</p>
-      </div>
-      <div class="route-step">
-        <div class="route-pin p3">3</div>
-        <h3>Know what's due next</h3>
-        <p>Cost per km, real mileage and reminders update automatically from what you've logged.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec gal-band" id="screenshots">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <span class="eyebrow-sm">Inside the app</span>
-      <h2>A look inside the logbook.</h2>
-      <p>Every screen is built around one real number: your vehicle's cost per kilometre.</p>
-    </div>
-    <div class="swipe-cue" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      Swipe to explore
-    </div>
-    <div class="gallery rise" role="region" aria-label="App screenshots">
-
-      <!-- assets/screenshot-dashboard.png -->
-      <figure class="shot">
-        <div class="shot-frame">
-          <img src="assets/screenshot-dashboard.png" alt="VehiMinder dashboard: garage summary, vehicle list and upcoming reminders" loading="lazy" decoding="async" tabindex="0" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg><span>Screenshot coming soon</span></div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="brand-logo">
+            <img src="assets/orbit-garage-icon-96.png" alt="VehiMinder Logo">
+            <span>VehiMinder</span>
+          </a>
+          <p>Your intelligent vehicle maintenance partner. Track logs, schedule upkeep, and protect resale value.</p>
         </div>
-        <figcaption class="shot-cap">Dashboard</figcaption>
-      </figure>
 
-      <!-- assets/screenshot-vehicle.png -->
-      <figure class="shot">
-        <div class="shot-frame">
-          <img src="assets/screenshot-vehicle.png" alt="Vehicle detail screen showing odometer, running cost and a vehicle-type picker" loading="lazy" decoding="async" tabindex="0" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg><span>Screenshot coming soon</span></div>
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#screenshots">App Preview</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
         </div>
-        <figcaption class="shot-cap">Vehicle</figcaption>
-      </figure>
 
-      <!-- assets/screenshot-fuel.png -->
-      <figure class="shot">
-        <div class="shot-frame">
-          <img src="assets/screenshot-fuel.png" alt="Fuel history screen with average mileage per vehicle and a fuel price trend chart" loading="lazy" decoding="async" tabindex="0" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg><span>Screenshot coming soon</span></div>
-        </div>
-        <figcaption class="shot-cap">Fuel history</figcaption>
-      </figure>
-
-      <!-- assets/screenshot-reports.png -->
-      <figure class="shot">
-        <div class="shot-frame">
-          <img src="assets/screenshot-reports.png" alt="Reports screen listing overview, fuel, service, trips, costs, vehicle comparison and insights" loading="lazy" decoding="async" tabindex="0" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg><span>Screenshot coming soon</span></div>
-        </div>
-        <figcaption class="shot-cap">Reports</figcaption>
-      </figure>
-
-      <!-- assets/screenshot-scan.png -->
-      <figure class="shot">
-        <div class="shot-frame">
-          <img src="assets/screenshot-scan.png" alt="Add Fuel Entry screen with the Scan Bill button and quick-amount chips" loading="lazy" decoding="async" tabindex="0" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="shot-fallback" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 18h6"/></svg><span>Screenshot coming soon</span></div>
-        </div>
-        <figcaption class="shot-cap">Scan a bill</figcaption>
-      </figure>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec band-navy" id="scan">
-  <div class="wrap split">
-    <div class="rise">
-      <span class="eyebrow-sm" style="color:var(--teal)">Bill scanning</span>
-      <h2>Point your camera at the bill.</h2>
-      <p style="color:var(--muted-on-dark);margin-top:14px">Petrol pump printouts are the most tedious thing to type in. So don't. Photograph the receipt and the amount, litres, rate and date fill themselves in.</p>
-      <div class="steps">
-        <div class="step"><b>01</b><span>Photograph the receipt, or pick one from your gallery</span></div>
-        <div class="step"><b>02</b><span>Text is read on your phone — the image never leaves it</span></div>
-        <div class="step"><b>03</b><span>Check the figures, correct anything, save</span></div>
-      </div>
-      <p style="margin-top:24px;font-size:.92rem;color:var(--muted-on-dark)">Works on service bills and insurance papers too — those pull out the policy number and expiry date.</p>
-    </div>
-
-    <div class="rise">
-      <div class="receipt">
-        <div class="r-top"><b>BHARAT PETROLEUM</b><em>Hosur Road · Bengaluru</em></div>
-        <div class="r-line"><span>DATE</span><span>14/07/2026</span></div>
-        <div class="r-line"><span>PRODUCT</span><span>PETROL</span></div>
-        <div class="r-line"><span>RATE / LTR</span><span>110.00</span></div>
-        <div class="r-line"><span>VOLUME</span><span>5.00 L</span></div>
-        <div class="r-line tot"><span>AMOUNT</span><span>₹550.00</span></div>
-        <div class="r-cap">↓ read on device · 4 fields filled</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec band-navy" style="border-top:1px solid var(--rule-dark)">
-  <div class="wrap split">
-    <div class="rise">
-      <span class="eyebrow-sm" style="color:var(--lime)">Privacy</span>
-      <h2>Your garage stays yours.</h2>
-      <p style="color:var(--muted-on-dark);margin-top:14px">There's no account to create and no server to sign in to. Everything you log is stored on your device. Bill photos are read on the phone itself. Back up whenever you like — to a file you keep, or to your own Google Drive.</p>
-      <p style="margin-top:14px"><a href="privacy.html" style="color:var(--teal);font-weight:600">Read the full privacy policy →</a></p>
-      <p class="privacy-note">Note: this offline guarantee describes the VehiMinder Android app. This website is a standard static page with no offline mode of its own — viewing it still needs an internet connection.</p>
-    </div>
-    <div class="garage-visual rise" aria-hidden="true">
-      <svg viewBox="0 0 240 240" fill="none">
-        <path d="M30,200 Q70,150 60,110 Q50,70 110,60 Q170,50 160,20" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 13" opacity=".6"/>
-        <circle cx="60" cy="110" r="5" fill="var(--violet)"/>
-        <circle cx="160" cy="20" r="6" fill="var(--violet)"/>
-        <rect x="70" y="120" width="100" height="80" rx="14" fill="var(--navy-2)" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
-        <rect x="98" y="150" width="44" height="34" rx="6" fill="var(--lime)"/>
-        <path d="M106 150v-14a14 14 0 0 1 28 0v14" stroke="var(--muted-on-dark)" stroke-width="4" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="faq">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <span class="eyebrow-sm">FAQ</span>
-      <h2>Questions people actually ask.</h2>
-    </div>
-    <div class="faq rise">
-
-      <details class="faq-item">
-        <summary>Does VehiMinder need an internet connection?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>No. Logging fuel, service, oil changes, documents and trips all works fully offline. Bill scanning also runs entirely on your device, using on-device text recognition — the photo never leaves your phone.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do I need to create an account?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>No sign-up, no login, no server. Your records live in the app on your phone. You choose if and when to back them up.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>What vehicles and fuel types does it support?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>Bikes, scooters, cars and EVs, in petrol, diesel, CNG, hybrid or electric. Electric vehicles log charging in kWh and get km/kWh instead of km/L.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How is cost per kilometre calculated?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>Fuel and service spending are added up and divided by the distance you actually covered, measured between full tanks — not an estimate off the brochure figure.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Can I back up my data?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>Yes — export to a file you keep, or rely on your own Google Drive through Android's built-in backup. Either way, it's your account and your storage, not ours.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Is it free?<svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
-        <p>Yes.</p>
-      </details>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec final-cta">
-  <div class="final-road" aria-hidden="true">
-    <svg viewBox="0 0 800 60" preserveAspectRatio="none">
-      <line x1="0" y1="30" x2="800" y2="30" stroke="rgba(255,255,255,.35)" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 20" style="animation:dashMove 7s linear infinite"/>
-    </svg>
-  </div>
-  <div class="wrap rise">
-    <h2 style="max-width:16ch">Take better care of every ride.</h2>
-    <p style="max-width:52ch;margin-top:14px;font-size:1.05rem">Every fill-up, every service, every document — one logbook, on your phone, under your control.</p>
-    <div class="cta-row" style="margin-top:30px">
-      <!-- Replace # with your Play Store link once the app is published -->
-      <a href="#" class="btn" style="background:#fff;color:var(--cobalt)">Get it on Google Play <small style="color:var(--cobalt)">Coming soon</small></a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="f-in">
-      <div class="f-l">
-        <a href="index.html" class="brand"><img class="brand-mark" src="assets/orbit-garage-icon-96.png" alt="VehiMinder logo"> VehiMinder</a>
-        <p>A maintenance and running-cost log for Indian bike, scooter, car and EV owners. Built by Venkatesh K.</p>
-      </div>
-      <div class="f-r">
-        <div class="f-col">
-          <h4>App</h4>
-          <a href="#features">Features</a>
-          <a href="#screenshots">Screens</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="f-col">
-          <h4>Legal</h4>
-          <a href="privacy.html">Privacy policy</a>
-          <a href="mailto:vehiclemaintenancetracker@zohomail.in">Support</a>
+        <div>
+          <h4 class="footer-title">Legal & Support</h4>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="site.webmanifest">Web Manifest</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-    <div class="f-bot">
-      <span>© 2026 Venkatesh K · VehiMinder · Version 2.4.0</span>
-      <span>Made with ❤️ in India</span>
-    </div>
-    <div class="f-credit">
-      <span>Lead Developer &amp; Architect: Venkatesh K</span>
-      <span>Development Assistant: Claude Code (Anthropic)</span>
-      <span class="f-credit-note">Designed and engineered by Venkatesh K, with Claude Code for accelerated development.</span>
-    </div>
-  </div>
-</footer>
 
-<script>
-  // Odometer: roll each drum to its digit, staggered right-to-left like a real counter.
-  (function(){
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var reels = Array.prototype.slice.call(document.querySelectorAll('.reel'));
-    function digitHeight(){
-      var s = document.querySelector('.reel span');
-      return s ? s.getBoundingClientRect().height : 56;
-    }
-    function set(){
-      var h = digitHeight();
-      reels.forEach(function(r, i){
-        var d = parseInt(r.getAttribute('data-d'), 10) || 0;
-        var delay = reduce ? 0 : (reels.length - 1 - i) * 110;
-        setTimeout(function(){ r.style.transform = 'translateY(-' + (d * h) + 'px)'; }, delay);
-      });
-    }
-    if (reduce) { set(); } else { setTimeout(set, 260); }
-    window.addEventListener('resize', function(){
-      var h = digitHeight();
-      reels.forEach(function(r){
-        var d = parseInt(r.getAttribute('data-d'), 10) || 0;
-        r.style.transition = 'none';
-        r.style.transform = 'translateY(-' + (d * h) + 'px)';
-        void r.offsetWidth;
-        r.style.transition = '';
+      <div class="footer-bottom">
+        <div>&copy; 2026 VehiMinder. All rights reserved.</div>
+        <div>Built for smart vehicle ownership.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // Navbar Scroll Background Transition
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Navigation Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // FAQ Accordion Toggle
+    document.querySelectorAll('.faq-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const parent = header.parentElement;
+        const isActive = parent.classList.contains('active');
+        
+        document.querySelectorAll('.faq-card').forEach(card => card.classList.remove('active'));
+        if (!isActive) {
+          parent.classList.add('active');
+        }
       });
     });
-  })();
 
-  // Scroll reveals
-  (function(){
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-      document.querySelectorAll('.rise').forEach(function(el){ el.classList.add('in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    // 3D Tilt Effect on Feature Cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${-y / 18}deg) rotateY(${x / 18}deg) translateY(-6px)`;
       });
-    }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
-    document.querySelectorAll('.rise').forEach(function(el){ io.observe(el); });
-  })();
 
-  // Mobile nav toggle — keyboard accessible, closes after a link is chosen
-  (function(){
-    var btn = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
-    if (!btn || !links) return;
-    function closeMenu(){ links.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
-    btn.addEventListener('click', function(){
-      var open = links.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
     });
-    links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
-  })();
 
-  // Sticky nav — solid surface once the page has scrolled past the top
-  (function(){
-    var nav = document.getElementById('siteNav');
-    if (!nav) return;
-    function onScroll(){
-      if (window.scrollY > 8) nav.classList.add('solid');
-      else nav.classList.remove('solid');
-    }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  })();
-</script>
+    // Animated Numbers Odometer
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.stat-number').forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            if (target === 0) return;
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                stat.innerText = target.toLocaleString() + '+';
+                clearInterval(timer);
+              } else {
+                stat.innerText = Math.ceil(current).toLocaleString();
+              }
+            }, 30);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
 
+    statsObserver.observe(document.querySelector('.stats-section'));
+  </script>
 </body>
 </html>
